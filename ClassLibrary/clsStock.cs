@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    class clsStock
+    public class clsStock
     {
+        public int productId { get; set; }
+        public string GameTitle { get; set; }
+        public int Price { get; set; }
+        public string Platform { get; set; }
+        public Boolean InStock { get; set; }
+        public int StockQuantity { get; set; }
+        public DateTime ReleaseDate { get; set; }
     }
 }
