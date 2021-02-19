@@ -20,7 +20,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         clsStaff AStaff = new clsStaff();
         AStaff.firstName = txtfirstName.Text;
-        AStaff.StaffId = int.Parse(txtStaffId.Text);
+        AStaff.staffId = int.Parse(txtStaffId.Text);
         AStaff.surname = txtsurname.Text;
         AStaff.dateOfBirth = DateTime.Parse(txtdateOfBirth.Text);
         AStaff.password = txtpassword.Text;
