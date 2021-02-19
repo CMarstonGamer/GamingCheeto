@@ -3,7 +3,7 @@ namespace ClassLibrary
 {
     public class clsStaff
     {
-        public int StaffId { get; set; }
+        public int staffId { get; set; }
         public string firstName { get; set; }
         public string surname { get; set; }
         public bool managerOrStaff { get; set; }
