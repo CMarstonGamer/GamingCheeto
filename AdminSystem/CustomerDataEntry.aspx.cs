@@ -25,17 +25,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the customer email
         ACustomer.CustomerEmail = txtCustomerEmail.Text;
         //capture the customer password
-        ACustomer.CustomerPassword = txtPassword.Text;
+        ACustomer.CustomerPassword = txtCustomerPassword.Text;
         //capture the customer card number
-        ACustomer.CardNumber = txtCardNumber.Text;
+        ACustomer.CustomerCardNumber = txtCustomerCardNumber.Text;
         //capture the customer creation date
-        ACustomer.CardNumber = txtCardNumber.Text;
+        ACustomer.CustomerCardNumber = txtCustomerCardNumber.Text;
         //capture the customer account status
-        ACustomer.AccountStatus = bool.Parse(chkAccountStatus.Text);
-
+        //ACustomer.CustomerAccountStatus = bool.Parse(chkCustomerAccountStatus);
         //store the name in the session object
         Session["ACustomer"] = ACustomer;
         //navigate to the viewer page
         Response.Redirect("CustomerViewer.aspx");
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
     }
 }
