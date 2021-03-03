@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 329px; top: 13px; position: absolute" Text="Find" />
             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 22px; top: 332px; position: absolute"></asp:Label>
         </div>
         <asp:Label ID="lblCustomerId" runat="server" style="z-index: 1; left: 22px; top: 17px; position: absolute" Text="Customer ID"></asp:Label>

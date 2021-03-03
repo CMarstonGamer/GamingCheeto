@@ -158,12 +158,12 @@ namespace Testing3
             //Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create test data to use wiht the method
-            Int32 CustomerId = 1;
+            Int32 CustomerId = 2;
             ACustomer.CustomerId = CustomerId;
             //invoke the method
             Found = ACustomer.Find(CustomerId);
             //check the CustomerName
-            if (ACustomer.CustomerName != "Joe Bloggs")
+            if (ACustomer.CustomerName != "Jack Blaggs")
             {
                 OK = false;
             }
