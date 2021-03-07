@@ -102,5 +102,21 @@ namespace Testing1
 
             Assert.AreEqual(StockData, Game.ReleaseDate);
         }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsStock Game = new clsStock();
+
+            Boolean Found = false;
+
+            Int32 StockData = 5;
+
+            Game.productId = StockData;
+
+            Found = Game.Find(StockData);
+
+            Assert.IsTrue(Found);
+        }
     }
 }
