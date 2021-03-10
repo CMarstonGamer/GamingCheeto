@@ -7,6 +7,15 @@ namespace Testing3
     [TestClass]
     public class tstCustomer
     {
+        //good test data
+        //create some test data to the method
+        string CustomerId = "1";
+        string CustomerName = "Joe Bloggs";
+        string CustomerEmail = "joebloggs123@email.com";
+        string CustomerPassword = "password123";
+        string CustomerCardNumber = "0123456789101112";
+        string CustomerCreationDate = DateTime.Now.Date.ToString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -107,7 +116,11 @@ namespace Testing3
             Assert.AreEqual(ACustomer.CustomerAccountStatus, TestData);
         }
 
-        /* --- Testing  the 'Find' method --- */
+        /* --- 
+         * 
+         * Testing  the 'Find' method 
+         * 
+         * --- */
 
         [TestMethod]
         public void FindMethodOK()
@@ -285,5 +298,377 @@ namespace Testing3
             //test to see that the redult is correct
             Assert.IsTrue(OK);
         }
+
+        /* --- 
+         * 
+         * Testing  the 'Valid' method
+         * 
+         * --- */
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerIdMinLessOne()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerId = ""; //this should trigger an error
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, ""); //uses AreNotEqual to verify an unwanted value
+        }
+
+        [TestMethod]
+        public void CustomerIdMin()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerId = "1";
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerIdMinPlusOne()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerId = "12";
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerIdMaxLessOne()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerId = "1";
+            CustomerId.PadRight(9999, '1');
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerIdMax()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerId = "1";
+            CustomerId.PadRight(10000, '1');
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerIdMaxPlusOne()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerId = "1";
+            CustomerId.PadRight(10001, '1'); //this should trigger an error
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, ""); //uses AreNotEqual to verify an unwanted value
+        }
+
+        [TestMethod]
+        public void CustomerIdExtremeMax()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerId = "1";
+            CustomerId.PadRight(50000, '1'); //this should trigger an error
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, ""); //uses AreNotEqual to verify an unwanted value
+        }
+
+        [TestMethod]
+        public void CustomerNameMinLessOne()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerName = ""; //this should trigger an error
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, ""); //uses AreNotEqual to verify an unwanted value
+        }
+
+        [TestMethod]
+        public void CustomerNameMin()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerName = "A"; //this should be ok
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMinPlusOne()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerName = "Ab"; //this should be ok
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMaxLessOne()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerName = "A";
+            CustomerName = CustomerName.PadRight(99, 'a');//this should be ok
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMax()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerName = "A";
+            CustomerName = CustomerName.PadRight(100, 'a');//this should be ok
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMid()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerName = "A";
+            CustomerName = CustomerName.PadRight(50, 'a');//this should be ok
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameMaxPlusOne()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerName = "A";
+            CustomerName = CustomerName.PadRight(101, 'a');//this trigger an error
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerNameExtremeMax()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerName = "A";
+            CustomerName = CustomerName.PadRight(1000, 'a');//this should trigger an error
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerCreationDateExtremeMin()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to minus 100 years
+            TestDate = TestDate.AddYears(-100); //this should trigger an error
+            //convert the date to variable to string variable
+            string CustomerCreationDate = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerCreationDateMinLessOne()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to minus 1 day
+            TestDate = TestDate.AddDays(-1); //this should trigger an error
+            //convert the date to variable to string variable
+            string CustomerCreationDate = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerCreationDateMin()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //convert the date to variable to string variable
+            string CustomerCreationDate = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerCreationDateMinPlusOne()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to plus 1 day
+            TestDate = TestDate.AddDays(1); //this should trigger an error
+            //convert the date to variable to string variable
+            string CustomerCreationDate = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerCreationDateExtremeMax()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to plus 100 years
+            TestDate = TestDate.AddYears(100); //this should trigger an error
+            //convert the date to variable to string variable
+            string CustomerCreationDate = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerCreationDateInvalidData()
+        {
+            //create instance of clsCustomer
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //test data
+            string CustomerCreationDate = "this is not a date!";
+            //invoke the method
+            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }

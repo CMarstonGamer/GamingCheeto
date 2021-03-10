@@ -54,6 +54,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //get the primary key entered by the user
         CustomerId = Convert.ToInt32(txtCustomerId.Text);
         //find the record
+        ACustomer.CustomerId = CustomerId; //applied CustomerId to ACustomer to fix the issue
         Found = ACustomer.Find(CustomerId);
         //if found
         if (Found == true)
@@ -65,6 +66,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtCustomerPassword.Text = ACustomer.CustomerPassword;
             txtCustomerCardNumber.Text = ACustomer.CustomerCardNumber;
             txtCustomerCreationDate.Text = ACustomer.CustomerCreationDate.ToString();
+        }
+        else
+        {
+            txtCustomerId.Text = "";
+            txtCustomerName.Text = "";
+            txtCustomerEmail.Text = "";
+            txtCustomerPassword.Text = "";
+            txtCustomerCardNumber.Text = "";
+            txtCustomerCreationDate.Text = "";
         }
     }
 }
