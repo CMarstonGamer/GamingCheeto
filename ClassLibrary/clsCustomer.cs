@@ -140,5 +140,66 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(string customerId, string customerName, string customerEmail, string customerPassword, string customerCardNumber, string customerCreationDate)
+        {
+            //string to store the error
+            String Error = "";
+            //convert customerId to int
+            int customerIdInt;
+            //date variable to store date values
+            DateTime DateTemp;
+
+            try
+            {
+                customerIdInt = Convert.ToInt32(customerId);
+                if (customerIdInt == 0)
+                {
+                    Error = Error + "The customer id must not be blank : ";
+                }
+                if (customerIdInt > 10000)
+                {
+                    Error = Error + "The customer id is too large : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The customer id does not have a valid data type : ";
+            }
+            
+
+            if (customerName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The customer name must not be blank : ";
+            }
+            if (customerName.Length > 100)
+            {
+                Error = Error + "The customer name must be less than 100 characters : ";
+            }
+
+            try
+            {
+                //copy customerCreationDate to the DateTemp variable
+                DateTemp = Convert.ToDateTime(customerCreationDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The customer creation date can not be in the past : ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The customer creation date can not be in the future : ";
+                }
+            }
+
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+            
+
+            //return any error messages
+            return Error;
+        }
     }
 }
