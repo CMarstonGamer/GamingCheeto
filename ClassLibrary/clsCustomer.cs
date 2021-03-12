@@ -149,6 +149,7 @@ namespace ClassLibrary
             //date variable to store date values
             DateTime DateTemp;
 
+            //customerId conditions
             try
             {
                 customerIdInt = Convert.ToInt32(customerId);
@@ -166,17 +167,43 @@ namespace ClassLibrary
                 Error = Error + "The customer id does not have a valid data type : ";
             }
             
-
+            //customerName conditions
             if (customerName.Length == 0)
             {
-                //record the error
-                Error = Error + "The customer name must not be blank : ";
+             Error = Error + "The customer name must not be blank : ";
             }
             if (customerName.Length > 100)
             {
                 Error = Error + "The customer name must be less than 100 characters : ";
             }
 
+            //customerEmail conditions
+            if (customerEmail.Length == 0)
+            {
+             Error = Error + "The customer email must not be blank : ";
+            }
+            if (customerEmail.Length > 50)
+            {
+                Error = Error + "The customer email must be less than 50 characters : ";
+            }
+
+            //customerPassword conditions
+            if (customerPassword.Length < 5)
+            {
+                Error = Error + "The customer password must not be less than 5 characters : ";
+            }
+            if (customerPassword.Length > 50)
+            {
+                Error = Error + "The customer password must not be greater than 50 characters : ";
+            }
+
+            //customerCardNumber 
+            if (customerCardNumber.Length != 16)
+            {
+                Error = Error + "The customer card number must be 16 characters : ";
+            }
+
+            //customerCreationDate conditions
             try
             {
                 //copy customerCreationDate to the DateTemp variable
@@ -190,13 +217,10 @@ namespace ClassLibrary
                     Error = Error + "The customer creation date can not be in the future : ";
                 }
             }
-
             catch
             {
-                //record the error
                 Error = Error + "The date was not a valid date : ";
             }
-            
 
             //return any error messages
             return Error;
