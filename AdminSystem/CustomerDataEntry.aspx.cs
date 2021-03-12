@@ -19,23 +19,45 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsCustomer ACustomer = new clsCustomer();
 
         //capture the customer id
-        ACustomer.CustomerId = int.Parse(txtCustomerId.Text);
+        string CustomerId = txtCustomerId.Text;
         //capture the customer name
-        ACustomer.CustomerName = txtCustomerName.Text;
+        string CustomerName = txtCustomerName.Text;
         //capture the customer email
-        ACustomer.CustomerEmail = txtCustomerEmail.Text;
+        string CustomerEmail = txtCustomerEmail.Text;
         //capture the customer password
-        ACustomer.CustomerPassword = txtCustomerPassword.Text;
+        string CustomerPassword = txtCustomerPassword.Text;
         //capture the customer card number
-        ACustomer.CustomerCardNumber = txtCustomerCardNumber.Text;
+        string CustomerCardNumber = txtCustomerCardNumber.Text;
         //capture the customer creation date
-        ACustomer.CustomerCardNumber = txtCustomerCardNumber.Text;
-        //capture the customer account status
-        //ACustomer.CustomerAccountStatus = bool.Parse(chkCustomerAccountStatus);
-        //store the name in the session object
-        Session["ACustomer"] = ACustomer;
-        //navigate to the viewer page
-        Response.Redirect("CustomerViewer.aspx");
+        string CustomerCreationDate = txtCustomerCardNumber.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+        if (Error == "")
+        {
+            //capture the customer id
+            ACustomer.CustomerId = Convert.ToInt32(CustomerId);
+            //capture the customer name
+            ACustomer.CustomerName = CustomerName;
+            //capture the customer email
+            ACustomer.CustomerEmail = CustomerEmail;
+            //capture the customer password
+            ACustomer.CustomerPassword = CustomerPassword;
+            //capture the customer card number
+            ACustomer.CustomerCardNumber = CustomerCardNumber;
+            //capture the customer creation date
+            ACustomer.CustomerCreationDate = Convert.ToDateTime(CustomerCreationDate);
+            //store the name in the session object
+            Session["ACustomer"] = ACustomer;
+            //navigate to the viewer page
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
