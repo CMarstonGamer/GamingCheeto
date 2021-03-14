@@ -80,6 +80,8 @@ namespace ClassLibrary
         }
         public bool Find(int staffId)
         {
+            clsStaff DB = new clsStaff();
+            //DB.AddParameter("@staffId", staffId);
             mStaffId = 21;
             mFirstName = "Chris";
             mSurname = "Marston";
