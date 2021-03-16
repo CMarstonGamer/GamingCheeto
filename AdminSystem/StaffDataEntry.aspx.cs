@@ -35,4 +35,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Session["AStaff"] = AStaff;
         Response.Redirect("StaffViewer.aspx");
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsStaff AStaff = new clsStaff();
+        Int32 staffId;
+        Boolean Found = false;
+        staffId = Convert.ToInt32(txtStaffId.Text);
+        Found = AStaff.Find(staffId);
+        if (Found == true)
+        {
+            txtfirstName.Text = AStaff.firstName;
+            txtsurname.Text = AStaff.surname;
+            txtdateOfBirth.Text = AStaff.dateOfBirth.ToString();
+            txtpassword.Text = AStaff.password;
+
+        }
+        else
+        {
+            lblError.Text = "Data entry not found";
+        }
+    }
 }
