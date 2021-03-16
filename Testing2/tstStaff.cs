@@ -66,7 +66,7 @@ namespace Testing2
         {
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
-            Int32 staffId = 21;
+            Int32 staffId = 6;
             Found = AStaff.Find(staffId);
             Assert.IsTrue(Found);
         }
@@ -76,10 +76,10 @@ namespace Testing2
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 staffId = 21;
+            Int32 staffId = 6;
             Found = AStaff.Find(staffId);
-            if (AStaff.staffId != 21)
-            {
+            if (AStaff.staffId != 6)
+            { 
                 OK = false;
             }
             Assert.IsTrue(OK);
@@ -90,7 +90,7 @@ namespace Testing2
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 staffId = 21;
+            Int32 staffId = 6;
             Found = AStaff.Find(staffId);
             if (AStaff.firstName != "Chris")
             {
@@ -104,7 +104,7 @@ namespace Testing2
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 staffId = 21;
+            Int32 staffId = 6;
             Found = AStaff.Find(staffId);
             if (AStaff.surname != "Marston")
             {
@@ -118,7 +118,7 @@ namespace Testing2
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 staffId = 21;
+            Int32 staffId = 6;
             Found = AStaff.Find(staffId);
             if (AStaff.managerOrStaff != true)
             {
@@ -132,7 +132,7 @@ namespace Testing2
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 staffId = 21;
+            Int32 staffId = 6;
             Found = AStaff.Find(staffId);
             if (AStaff.dateOfBirth != DateTime.Now.Date)
             {
@@ -146,7 +146,7 @@ namespace Testing2
             clsStaff AStaff = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 staffId = 21;
+            Int32 staffId = 6;
             Found = AStaff.Find(staffId);
             if (AStaff.password != "bruhhhh")
             {
