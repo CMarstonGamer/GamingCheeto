@@ -125,9 +125,11 @@ namespace ClassLibrary
             else { return false; }
         }
 
-        public string Valid(int ProductId, string GameTitle, string Price, string Platform, string StockQuantity, string ReleaseDate)
+        public string Valid(string ProductId, string GameTitle, string Price, string Platform, string StockQuantity, string ReleaseDate)
         {
             String Error = "";
+            int ProductIdInt;
+            int PriceInt;
 
             if (GameTitle.Length == 0) //Extreme Min
             {
@@ -139,15 +141,42 @@ namespace ClassLibrary
                 Error = Error + "Game title must be more than 0 characters and less than 100";
             }
 
-            if (ProductId < 1)
+            try
             {
-                Error = Error + "ProductId must be more than 1 and less than 1000000";
+                ProductIdInt = Convert.ToInt32(ProductId);
+                if (ProductIdInt < 1)
+                {
+                    Error = Error + "ProductId must be more than 1 and less than 1000000";
+                }
+
+                if (ProductIdInt >= 1000000)
+                {
+                    Error = Error + "ProductId must be more than 1 and less than 1000000";
+                }
+            }
+            catch
+            {
+                Error = Error + "The productId does not have a valid data type";
             }
 
-            if (ProductId >= 1000000)
+            try
             {
-                Error = Error + "ProductId must be more than 1 and less than 1000000";
+                PriceInt = Convert.ToInt32(Price);
+                if (PriceInt < 1)
+                {
+                    Error = Error + "Price must be more than 0 and equal too or less than 1000";
+                }
+
+                if (PriceInt > 1000)
+                {
+                    Error = Error + "Price must be more than 0 and equal too or less than 1000";
+                }
             }
+            catch
+            {
+                Error = Error + "The price does not have a valid data type";
+            }
+
 
 
 

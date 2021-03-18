@@ -15,6 +15,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
+        clsStock Game = new clsStock;
+
+        Game.GameTitle = txtGameTitle.Text;
+
+        Game.Price = Convert.ToInt32(txtPrice.Text);
+
+        Game.Platform = drpPlatform.Text;
+
+        Game.StockQuantity = Convert.ToInt32(txtStockQuantity.Text);
+
+        Game.ReleaseDate = Convert.ToDateTime(txtReleaseDate.Text);
+
+        Session["Game"] = Game;
+
+        Response.Write("StockViewer.aspx");
 
     }
 
@@ -42,7 +57,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtProductId.Text = Game.productId.ToString();
             txtGameTitle.Text = Game.GameTitle;
             txtPrice.Text = Game.Price.ToString();
-            txtPlatform.Text = Game.Platform;
+            drpPlatform.Text = Game.Platform;
             txtReleaseDate.Text = Game.ReleaseDate.ToString();
             txtStockQuantity.Text = Game.StockQuantity.ToString();
 
