@@ -7,6 +7,11 @@ namespace Testing2
     [TestClass]
     public class tstStaff
     {
+        string firstName = "Chris";
+        string surname = "Marston";
+        string managerOrStaff = "true";
+        string dateOfBirth = DateTime.Now.Date.ToString();
+        string password = "bruh";
         [TestMethod]
         public void InstanceOK()
         {
@@ -154,5 +159,52 @@ namespace Testing2
             }
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            Error = AStaff.Valid(firstName, surname, managerOrStaff, dateOfBirth, password);
+            Assert.AreEqual(Error, "");
+        }
+       [TestMethod]
+       public void firstNameMinLessOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            String firstName = "";
+            Error = AStaff.Valid(firstName, surname, managerOrStaff, dateOfBirth, password);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void firstNameMin()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnAddress = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string firstName = "a"; //this should be ok
+            //invoke the method
+            Error = AnAddress.Valid(firstName, surname, managerOrStaff, dateOfBirth,password);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void firstNameMin()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnAddress = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string firstName = "a"; //this should be ok
+            //invoke the method
+            Error = AnAddress.Valid(firstName, surname, managerOrStaff, dateOfBirth, password);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
     }
 }

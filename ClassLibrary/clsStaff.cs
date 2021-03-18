@@ -100,5 +100,16 @@ namespace ClassLibrary
             }
            
         }
+
+        public string Valid(string firstName, string surname, string managerOrStaff, string dateOfBirth, string password)
+        {
+            String Error = "";
+            if (firstName.Length == 0)
+            {
+                Error = Error + "The firstName must not be blank : ";
+
+            }
+            return Error;
+        }
     }
 }
