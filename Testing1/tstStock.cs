@@ -11,6 +11,14 @@ namespace Testing1
     [TestClass]
     public class tstStock
     {
+        int productId = 1;
+        string GameTitle = "Devil May Cry";
+        string Price = "12.99";
+        string Platform = "Playstation 4";
+        string StockQuantity = "2";
+        string ReleaseDate = "01/01/15";
+
+
         [TestMethod]
         public void instanceOK()
         {
@@ -118,5 +126,297 @@ namespace Testing1
 
             Assert.IsTrue(Found);
         }
+
+        [TestMethod]
+        public void ValidOk()
+        {
+            clsStock Game = new clsStock();
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void productIdExtremeMin()
+        {
+            clsStock Game = new clsStock();
+
+            Int32 TestData = -500;
+
+            productId = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void productIdMinBoundary()
+        {
+            clsStock Game = new clsStock();
+
+            Int32 TestData = 1;
+
+            productId = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void productIdMinPlusOne()
+        {
+            clsStock Game = new clsStock();
+
+            Int32 TestData = 2;
+
+            productId = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void productIdMaxMinusOne()
+        {
+            clsStock Game = new clsStock();
+
+            Int32 TestData = 999998;
+
+            productId = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void productIdMaxBoundary()
+        {
+            clsStock Game = new clsStock();
+
+            Int32 TestData = 999999;
+
+            productId = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void productIdMaxPlusOne()
+        {
+            clsStock Game = new clsStock();
+
+            Int32 TestData = 1000001;
+
+            productId = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void productIdMid()
+        {
+            clsStock Game = new clsStock();
+
+            Int32 TestData = 500000;
+
+            productId = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void productIdExtremeMax()
+        {
+            clsStock Game = new clsStock();
+
+            Int32 TestData = 2000000;
+
+            productId = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void GameTitleExtremeMin()
+        {
+            clsStock Game = new clsStock();
+
+            String TestData = "";
+
+            GameTitle = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void GameTitleMinBoundary()
+        {
+            clsStock Game = new clsStock();
+
+            String TestData = "a";
+
+            GameTitle = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void GameTitleMinPlusOne()
+        {
+            clsStock Game = new clsStock();
+
+            String TestData = "aa";
+
+            GameTitle = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void GameTitleMaxMinusOne()
+        {
+            clsStock Game = new clsStock();
+
+            String TestData = "";
+            TestData = TestData.PadRight(99, 'a');
+
+            GameTitle = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void GameTitleMaxBoundary()
+        {
+            clsStock Game = new clsStock();
+
+            String TestData = "";
+            TestData = TestData.PadRight(100, 'a');
+
+            GameTitle = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void GameTitleMaxPlusOne()
+        {
+            clsStock Game = new clsStock();
+
+            String TestData = "";
+            TestData = TestData.PadRight(101, 'a');
+
+            GameTitle = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void GameTitleMid()
+        {
+            clsStock Game = new clsStock();
+
+            String TestData = "";
+            TestData = TestData.PadRight(50, 'a');
+
+            GameTitle = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void GameTitleExtremeMax()
+        {
+            clsStock Game = new clsStock();
+
+            String TestData = "";
+            TestData = TestData.PadRight(500, 'a');
+
+            GameTitle = TestData;
+
+            String Error = "";
+
+            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+
     }
 }

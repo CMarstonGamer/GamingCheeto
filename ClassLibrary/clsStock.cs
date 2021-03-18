@@ -124,5 +124,36 @@ namespace ClassLibrary
             }
             else { return false; }
         }
+
+        public string Valid(int ProductId, string GameTitle, string Price, string Platform, string StockQuantity, string ReleaseDate)
+        {
+            String Error = "";
+
+            if (GameTitle.Length == 0) //Extreme Min
+            {
+                Error = Error + "Game title must be more than 0 characters and less than 100";
+            }
+
+            if (GameTitle.Length > 100) //Extreme Min
+            {
+                Error = Error + "Game title must be more than 0 characters and less than 100";
+            }
+
+            if (ProductId < 1)
+            {
+                Error = Error + "ProductId must be more than 1 and less than 1000000";
+            }
+
+            if (ProductId >= 1000000)
+            {
+                Error = Error + "ProductId must be more than 1 and less than 1000000";
+            }
+
+
+
+            return Error;
+
+
+        }
     }
 }
