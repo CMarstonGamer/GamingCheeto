@@ -9,13 +9,14 @@ using System.Collections.Generic;
 
 namespace Testing1
 {
+    [TestClass]
     public class tstStockCollection
     {
         [TestMethod]
         public void InstanceOK()
         {
 
-            clStockCollection StockCollection = new clsStockCollection();
+            clsStockCollection StockCollection = new clsStockCollection();
 
             Assert.IsNotNull(StockCollection);
         }
@@ -59,11 +60,9 @@ namespace Testing1
 
             Int32 SomeCount = 0;
 
-            AllAddresses.Count = SomeCount;
-
             StockCollection.Count = SomeCount;
 
-            Assert.AreEqual(AllAddresses.Count, SomeCount);
+            Assert.AreEqual(StockCollection.Count, SomeCount);
         }
 
         [TestMethod]
@@ -82,10 +81,10 @@ namespace Testing1
 
             StockCollection.ThisGame = TestGame;
 
-            Assert.AreEqual(StockCollecion.ThisGame, TestGame);
+            Assert.AreEqual(StockCollection.ThisGame, TestGame);
         }
 
-        [testMethod]
+        [TestMethod]
         public void ListAndCountOk()
         {
             clsStockCollection StockCollection = new clsStockCollection();

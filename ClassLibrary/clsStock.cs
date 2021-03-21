@@ -130,7 +130,11 @@ namespace ClassLibrary
             String Error = "";
             int ProductIdInt;
             int PriceInt;
+            int StockQuantityInt;
+            int ReleaseDateDate;
 
+
+            //Validate Game title
             if (GameTitle.Length == 0) //Extreme Min
             {
                 Error = Error + "Game title must be more than 0 characters and less than 100";
@@ -141,6 +145,7 @@ namespace ClassLibrary
                 Error = Error + "Game title must be more than 0 characters and less than 100";
             }
 
+            //Validate productId
             try
             {
                 ProductIdInt = Convert.ToInt32(ProductId);
@@ -159,6 +164,7 @@ namespace ClassLibrary
                 Error = Error + "The productId does not have a valid data type";
             }
 
+            //Validate price
             try
             {
                 PriceInt = Convert.ToInt32(Price);
@@ -177,6 +183,25 @@ namespace ClassLibrary
                 Error = Error + "The price does not have a valid data type";
             }
 
+            //validate StockQuantity
+            try
+            {
+                StockQuantityInt = Convert.ToInt32(StockQuantity);
+                if (StockQuantityInt < 1)
+                {
+                    Error = Error + "StockQuantity must be more than 0";
+                }
+
+                if (StockQuantityInt >= 1000)
+                {
+                    Error = Error + "StockQuantity must be more than 1000";
+                }
+                
+            }
+            catch
+            {
+                Error = Error + "StockQuantity is not a valid data type";
+            }
 
 
 
