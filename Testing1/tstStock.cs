@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace Testing1
 {
     [TestClass]
     public class tstStock
     {
-        string productId = 1;
+        string productId = "1";
         string GameTitle = "Devil May Cry";
-        string Price = "12.99";
+        string Price = "12";
         string Platform = "Playstation 4";
         string StockQuantity = "2";
         string ReleaseDate = "01/01/15";

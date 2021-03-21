@@ -40,7 +40,7 @@ namespace ClassLibrary
             }
         }
 
-        public clsStock ThisCustomer { get; set; }
+        public clsStock ThisGame { get; set; }
 
         public List<clsStock> StockList
         {
