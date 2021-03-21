@@ -806,9 +806,9 @@ namespace Testing1
         {
             clsStock Game = new clsStock();
 
-            String TestData = (DateTime.Now.Date).AddDays(-1);
+            DateTime TestData = (DateTime.Now.Date).AddDays(-1);
 
-            ReleaseDate = TestData;
+            ReleaseDate = Convert.ToString(TestData);
 
             String Error = "";
 
@@ -822,9 +822,9 @@ namespace Testing1
         {
             clsStock Game = new clsStock();
 
-            String TestData = DateTime.Now.Date;
+            DateTime TestData = DateTime.Now.Date;
 
-            ReleaseDate = TestData;
+            ReleaseDate = Convert.ToString(TestData);
 
             String Error = "";
 
@@ -838,9 +838,9 @@ namespace Testing1
         {
             clsStock Game = new clsStock();
 
-            String TestData = (DateTime.Now.Date).AddDays(1);
+            DateTime TestData = (DateTime.Now.Date).AddDays(1);
 
-            ReleaseDate = TestData;
+            ReleaseDate = Convert.ToString(TestData);
 
             String Error = "";
 
