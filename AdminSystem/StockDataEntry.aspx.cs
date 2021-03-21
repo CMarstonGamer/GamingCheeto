@@ -40,7 +40,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
-        clsStock Game = new clsStock;
+        clsStock Game = new clsStock();
 
         Int32 ProductId;
 
