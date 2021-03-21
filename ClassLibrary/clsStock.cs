@@ -131,8 +131,10 @@ namespace ClassLibrary
             int ProductIdInt;
             int PriceInt;
             int StockQuantityInt;
-            int ReleaseDateDate;
-
+            DateTime ReleaseDateTemp;
+            String MinDate = "01/01/1970";
+            DateTime mMinDate = Convert.ToDateTime(MinDate);
+            bool InStockTemp = Convert.ToBoolean(InStock); 
 
             //Validate Game title
             if (GameTitle.Length == 0) //Extreme Min
@@ -151,12 +153,12 @@ namespace ClassLibrary
                 ProductIdInt = Convert.ToInt32(ProductId);
                 if (ProductIdInt < 1)
                 {
-                    Error = Error + "ProductId must be more than 1 and less than 1000000";
+                    Error = Error + "ProductId must be more than 0";
                 }
 
                 if (ProductIdInt >= 1000000)
                 {
-                    Error = Error + "ProductId must be more than 1 and less than 1000000";
+                    Error = Error + "ProductId must be less than 1000000";
                 }
             }
             catch
@@ -170,12 +172,12 @@ namespace ClassLibrary
                 PriceInt = Convert.ToInt32(Price);
                 if (PriceInt < 1)
                 {
-                    Error = Error + "Price must be more than 0 and equal too or less than 1000";
+                    Error = Error + "Price must be more than 0";
                 }
 
                 if (PriceInt > 1000)
                 {
-                    Error = Error + "Price must be more than 0 and equal too or less than 1000";
+                    Error = Error + "Price must be less than 1000";
                 }
             }
             catch
@@ -183,7 +185,7 @@ namespace ClassLibrary
                 Error = Error + "The price does not have a valid data type";
             }
 
-            //validate StockQuantity
+            //validate StockQuantity and InStock
             try
             {
                 StockQuantityInt = Convert.ToInt32(StockQuantity);
@@ -194,13 +196,42 @@ namespace ClassLibrary
 
                 if (StockQuantityInt >= 1000)
                 {
-                    Error = Error + "StockQuantity must be more than 1000";
+                    Error = Error + "StockQuantity must be less than 1000";
                 }
-                
+
+                if (InStock == true && StockQuantityInt == 0)
+                {
+                    Error = Error + "If StockQuantity is 0 then InStock must be false";
+                }
+
+                if (InStock == false && StockQuantityInt > 0)
+                {
+                    Error = Error + "If StockQuantity is greater than 0 then InStock must be true";
+                }
+
             }
             catch
             {
                 Error = Error + "StockQuantity is not a valid data type";
+            }
+
+            //validate ReleaseDate
+            try
+            {
+                ReleaseDateTemp = Convert.ToDateTime(ReleaseDate);
+                if (ReleaseDateTemp < mMinDate)
+                {
+                    Error = Error + "Date must not be before 1970";
+                }
+
+                if (ReleaseDateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "Date must not be in the future";
+                }
+            }
+            catch
+            {
+                Error = Error + "ReleaseDate is wrong data type";
             }
 
 
