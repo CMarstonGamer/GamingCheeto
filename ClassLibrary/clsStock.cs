@@ -134,7 +134,6 @@ namespace ClassLibrary
             DateTime ReleaseDateTemp;
             String MinDate = "01/01/1970";
             DateTime mMinDate = Convert.ToDateTime(MinDate);
-            bool InStockTemp = Convert.ToBoolean(InStock); 
 
             //Validate Game title
             if (GameTitle.Length == 0) //Extreme Min
@@ -185,28 +184,18 @@ namespace ClassLibrary
                 Error = Error + "The price does not have a valid data type";
             }
 
-            //validate StockQuantity and InStock
+            //validate StockQuantity
             try
             {
                 StockQuantityInt = Convert.ToInt32(StockQuantity);
-                if (StockQuantityInt < 1)
+                if (StockQuantityInt < 0)
                 {
                     Error = Error + "StockQuantity must be more than 0";
                 }
 
-                if (StockQuantityInt >= 1000)
+                if (StockQuantityInt > 1000)
                 {
                     Error = Error + "StockQuantity must be less than 1000";
-                }
-
-                if (InStock == true && StockQuantityInt == 0)
-                {
-                    Error = Error + "If StockQuantity is 0 then InStock must be false";
-                }
-
-                if (InStock == false && StockQuantityInt > 0)
-                {
-                    Error = Error + "If StockQuantity is greater than 0 then InStock must be true";
                 }
 
             }

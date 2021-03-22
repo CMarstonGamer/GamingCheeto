@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -896,68 +892,5 @@ namespace Testing1
 
             Assert.AreNotEqual(Error, "");
         }
-
-        [TestMethod]
-        public void InStockTrueAndQuantity0()
-        {
-            clsStock Game = new clsStock();
-
-            String TestInStock = "true";
-            String TestQuantity = "0";
-
-            StockQuantity = TestQuantity;
-            InStock = TestInStock;
-
-            String Error = "";
-
-            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
-
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void InStockFalseAndQuantity1()
-        {
-            clsStock Game = new clsStock();
-
-            String TestInStock = "false";
-            String TestQuantity = "1";
-
-            StockQuantity = TestQuantity;
-            InStock = TestInStock;
-
-            String Error = "";
-
-            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
-
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void InStockTrueAndQuantity1()
-        {
-            clsStock Game = new clsStock();
-
-            String TestInStock = "true";
-            String TestQuantity = "1";
-
-            StockQuantity = TestQuantity;
-            InStock = TestInStock;
-
-            String Error = "";
-
-            Error = Game.Valid(productId, GameTitle, Price, Platform, StockQuantity, ReleaseDate);
-
-            Assert.AreEqual(Error, "");
-        }
-
-
-
-
-
-
-
-
-
     }
 }
