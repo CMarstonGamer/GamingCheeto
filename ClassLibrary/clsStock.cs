@@ -125,10 +125,9 @@ namespace ClassLibrary
             else { return false; }
         }
 
-        public string Valid(string ProductId, string GameTitle, string Price, string Platform, string StockQuantity, string ReleaseDate)
+        public string Valid(string GameTitle, string Price, string Platform, string StockQuantity, string ReleaseDate)
         {
             String Error = "";
-            int ProductIdInt;
             int PriceInt;
             int StockQuantityInt;
             DateTime ReleaseDateTemp;
@@ -146,24 +145,6 @@ namespace ClassLibrary
                 Error = Error + "Game title must be more than 0 characters and less than 100";
             }
 
-            //Validate productId
-            try
-            {
-                ProductIdInt = Convert.ToInt32(ProductId);
-                if (ProductIdInt < 1)
-                {
-                    Error = Error + "ProductId must be more than 0";
-                }
-
-                if (ProductIdInt >= 1000000)
-                {
-                    Error = Error + "ProductId must be less than 1000000";
-                }
-            }
-            catch
-            {
-                Error = Error + "The productId does not have a valid data type";
-            }
 
             //Validate price
             try
@@ -226,8 +207,8 @@ namespace ClassLibrary
 
 
             return Error;
-
-
         }
+
+        
     }
 }
