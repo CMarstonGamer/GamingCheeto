@@ -41,7 +41,7 @@ namespace Testing1
             TestItem.Price = 12;
             TestItem.ReleaseDate = DateTime.Now.Date;
             TestItem.InStock = true;
-            TestGame.StockQuantity = 2;
+            TestItem.StockQuantity = 2;
 
             //add TestItem to TestList
             TestList.Add(TestItem);
@@ -97,10 +97,10 @@ namespace Testing1
             TestGame.Platform = "Playstation 4";
             TestGame.Price = 12;
             TestGame.ReleaseDate = DateTime.Now.Date;
-            TestGame.InStock = true;
+            TestGame.InStock = false;
             TestGame.StockQuantity = 2;
 
-            TestList.Add(TestItem);
+            TestList.Add(TestGame);
 
             StockCollection.StockList = TestList;
 
