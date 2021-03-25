@@ -72,8 +72,8 @@ namespace ClassLibrary
             DB.AddParameter("@GameTitle", mThisGame.GameTitle);
             DB.AddParameter("@Price", mThisGame.Price);
             DB.AddParameter("@Platform", mThisGame.Platform);
-            DB.AddParameter("@StockQuantity", mThisGame.ReleaseDate);
-            DB.AddParameter("@InStock", mThisGame.ReleaseDate);
+            DB.AddParameter("@StockQuantity", mThisGame.StockQuantity);
+            DB.AddParameter("@InStock", mThisGame.InStock);
             DB.AddParameter("@ReleaseDate", mThisGame.ReleaseDate);
 
             return DB.Execute("sproc_tblStock_Insert");
