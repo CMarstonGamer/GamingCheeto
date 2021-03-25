@@ -15,22 +15,61 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
-        clsStock Game = new clsStock;
+        clsStock Game = new clsStock();
 
-        Game.GameTitle = txtGameTitle.Text;
+        string GameTitle = txtGameTitle.Text;
+        string Price = txtPrice.Text;
+        string Platform = drpPlatform.Text;
+        string ReleaseDate = txtReleaseDate.Text;
+        string StockQuantity = txtStockQuantity.Text;
+        Boolean InStock = true;
+        string Error = "";
 
-        Game.Price = Convert.ToInt32(txtPrice.Text);
+        Error = Game.Valid(GameTitle, Price, Platform, StockQuantity, ReleaseDate);
 
-        Game.Platform = drpPlatform.Text;
+        if (Error == "")
+        {
+            if (Convert.ToInt32(StockQuantity) == 0)
+            {
+                InStock = false;
+                Game.GameTitle = GameTitle;
+                Game.Price = Convert.ToInt32(Price);
+                Game.Platform = Platform;
+                Game.ReleaseDate = Convert.ToDateTime(ReleaseDate);
+                Game.StockQuantity = Convert.ToInt32(StockQuantity);
+                Game.InStock = InStock;
 
-        Game.StockQuantity = Convert.ToInt32(txtStockQuantity.Text);
+                clsStockCollection StockCollection = new clsStockCollection();
 
-        Game.ReleaseDate = Convert.ToDateTime(txtReleaseDate.Text);
+                StockCollection.ThisGame = Game;
 
-        Session["Game"] = Game;
+                StockCollection.Add();
 
-        Response.Write("StockViewer.aspx");
+                Response.Redirect("StockList.aspx");
+            }
+            if (Convert.ToInt32(StockQuantity) > 0)
+            {
+                Game.GameTitle = GameTitle;
+                Game.Price = Convert.ToInt32(Price);
+                Game.Platform = Platform;
+                Game.ReleaseDate = Convert.ToDateTime(ReleaseDate);
+                Game.StockQuantity = Convert.ToInt32(StockQuantity);
+                Game.InStock = InStock;
 
+                clsStockCollection StockCollection = new clsStockCollection();
+
+                StockCollection.ThisGame = Game;
+
+                StockCollection.Add();
+
+                Response.Redirect("StockList.aspx");
+            }
+        }
+
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)

@@ -36,12 +36,12 @@ namespace Testing1
             clsStock TestItem = new clsStock();
 
             //set properties of TestItem
-            TestItem.productId = 1;
             TestItem.GameTitle = "Devil May Cry";
             TestItem.Platform = "Playstation 4";
             TestItem.Price = 12;
             TestItem.ReleaseDate = DateTime.Now.Date;
             TestItem.InStock = true;
+            TestGame.StockQuantity = 2;
 
             //add TestItem to TestList
             TestList.Add(TestItem);
@@ -72,12 +72,12 @@ namespace Testing1
 
             clsStock TestGame = new clsStock();
 
-            TestGame.productId = 1;
             TestGame.GameTitle = "Devil May Cry";
             TestGame.Platform = "Playstation 4";
             TestGame.Price = 12;
             TestGame.ReleaseDate = DateTime.Now.Date;
             TestGame.InStock = true;
+            TestGame.StockQuantity = 2;
 
             StockCollection.ThisGame = TestGame;
 
@@ -91,20 +91,47 @@ namespace Testing1
 
             List<clsStock> TestList = new List<clsStock>();
 
-            clsStock TestItem = new clsStock();
+            clsStock TestGame = new clsStock();
 
-            TestItem.productId = 1;
-            TestItem.GameTitle = "Devil May Cry";
-            TestItem.Platform = "Playstation 4";
-            TestItem.Price = 12;
-            TestItem.ReleaseDate = DateTime.Now.Date;
-            TestItem.InStock = true;
+            TestGame.GameTitle = "Devil May Cry";
+            TestGame.Platform = "Playstation 4";
+            TestGame.Price = 12;
+            TestGame.ReleaseDate = DateTime.Now.Date;
+            TestGame.InStock = true;
+            TestGame.StockQuantity = 2;
 
             TestList.Add(TestItem);
 
             StockCollection.StockList = TestList;
 
             Assert.AreEqual(StockCollection.Count, TestList.Count);
+        }
+
+        [TestMethod]
+        public void AddMethodOk()
+        {
+            clsStockCollection StockCollection = new clsStockCollection();
+
+            clsStock TestGame = new clsStock();
+
+            Int32 PrimaryKey = 0;
+
+            TestGame.GameTitle = "Devil May Cry";
+            TestGame.Platform = "Playstation 4";
+            TestGame.Price = 12;
+            TestGame.ReleaseDate = DateTime.Now.Date;
+            TestGame.InStock = true;
+            TestGame.StockQuantity = 2;
+
+            StockCollection.ThisGame = TestGame;
+
+            PrimaryKey = StockCollection.Add();
+
+            TestGame.productId = PrimaryKey;
+
+            StockCollection.ThisGame.Find(PrimaryKey);
+
+            Assert.AreEqual(StockCollection.ThisGame, TestGame);
         }
     }
 }

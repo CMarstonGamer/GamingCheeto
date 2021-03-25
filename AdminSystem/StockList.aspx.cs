@@ -28,4 +28,11 @@ public partial class _1_List : System.Web.UI.Page
 
         lstStockCollection.DataBind();
     }
+
+    protected void btnAdd_Click(Object sender, EventArgs e)
+    {
+        Session["productId"] = -1;
+
+        Response.Redirect("StockDataEntry.apsx");
+    }
 }
