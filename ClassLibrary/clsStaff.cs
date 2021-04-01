@@ -101,13 +101,21 @@ namespace ClassLibrary
            
         }
 
-        public string Valid(string firstName, string surname, string managerOrStaff, string dateOfBirth, string password)
+        public string Valid(string firstName, string surname, string dateOfBirth, string password)
         {
             String Error = "";
             if (firstName.Length == 0)
             {
                 Error = Error + "The firstName must not be blank : ";
 
+            }
+            if (firstName.Length > 50)
+            {
+                Error = Error + "The first name must be less than 50 characters";
+            }
+            if (surname.Length == 0)
+            {
+                Error = Error + "The surname must not be blank : "; 
             }
             return Error;
         }
