@@ -111,11 +111,35 @@ namespace ClassLibrary
             }
             if (firstName.Length > 50)
             {
-                Error = Error + "The first name must be less than 50 characters";
+                Error = Error + "The first name must be less than 50 characters: ";
             }
             if (surname.Length == 0)
             {
                 Error = Error + "The surname must not be blank : "; 
+            }
+            if (surname.Length > 50)
+            {
+                Error = Error + "The surname must be less than 50 characters: ";
+            }
+            if (password.Length == 0)
+            {
+                Error = Error + "The password must not be blank : ";
+            }
+            if (password.Length > 50)
+            {
+                Error = Error + "The password must be less than 50 characters: ";
+            }
+            try
+            {
+                DateTime DateTemp = Convert.ToDateTime(dateOfBirth);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "Date of Birth can't be in the future: ";
+                }
+            }
+            catch
+            {
+                Error = Error + "the date of birth was not a valid date";
             }
             return Error;
         }

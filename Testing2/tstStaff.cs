@@ -238,6 +238,21 @@ namespace Testing2
 
         }
         [TestMethod]
+        public void firstNameMaxPlusOne()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string firstName = ""; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
         public void firstNameMid()
         {
 
@@ -266,7 +281,7 @@ namespace Testing2
 
             Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
 
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
 
         }
 
@@ -340,6 +355,21 @@ namespace Testing2
 
         }
         [TestMethod]
+        public void surnameMaxPlusOne()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string surname = ""; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
         public void surnameMid()
         {
 
@@ -368,9 +398,238 @@ namespace Testing2
 
             Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
 
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void passwordMinLessOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            String password = "";
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void passwordMin()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string password = "a";
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void passwordMinPlusOne()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string password = "aa"; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
             Assert.AreEqual(Error, "");
 
         }
 
+        [TestMethod]
+        public void passwordMaxLessOne()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string password = "aaaaa";
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void passwordMax()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string password = "aaaaaa";
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void passwordMaxPlusOne()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string password = ""; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void passwordMid()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string password = "aaa";
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void passwordExtremeMax()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string password = "";
+            password = password.PadRight(500, 'a');
+
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void dateOfBirthMinLessOne()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            String dateOfBirth = TestDate.ToString();
+
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void dateOfBirthMin()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+          
+            String dateOfBirth = TestDate.ToString();
+
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void dateOfBirthMinPlusOne()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            String dateOfBirth = TestDate.ToString();
+
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void dateOfBirthMinExtremeMin()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            String dateOfBirth = TestDate.ToString();
+
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void dateOfBirthMinExtremeMax()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            String dateOfBirth = TestDate.ToString();
+
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void dateOfBirthMinInvalidData()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+           
+            String dateOfBirth = "this is not a date";
+
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
     }
 }
