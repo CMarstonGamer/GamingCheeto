@@ -139,7 +139,8 @@ namespace Testing2
             Boolean OK = true;
             Int32 staffId = 6;
             Found = AStaff.Find(staffId);
-            if (AStaff.dateOfBirth != DateTime.Now.Date)
+            if (AStaff.dateOfBirth != Convert.ToDateTime("18/03/2021"))
+
             {
                 OK = false;
             }
@@ -164,7 +165,7 @@ namespace Testing2
         {
             clsStaff AStaff = new clsStaff();
             String Error = "";
-            Error = AStaff.Valid(firstName, surname, managerOrStaff, dateOfBirth, password);
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
             Assert.AreEqual(Error, "");
         }
        [TestMethod]
@@ -173,38 +174,203 @@ namespace Testing2
             clsStaff AStaff = new clsStaff();
             String Error = "";
             String firstName = "";
-            Error = AStaff.Valid(firstName, surname, managerOrStaff, dateOfBirth, password);
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void firstNameMin()
         {
-            //create an instance of the class we want to create
-            clsStaff AnAddress = new clsStaff();
-            //string variable to store any error message
+           
+            clsStaff AStaff = new clsStaff();
+            
             String Error = "";
-            //create some test data to pass to the method
-            string firstName = "a"; //this should be ok
-            //invoke the method
-            Error = AnAddress.Valid(firstName, surname, managerOrStaff, dateOfBirth,password);
-            //test to see that the result is correct
+            
+            string firstName = "a"; 
+            
+            Error = AStaff.Valid(firstName, surname, dateOfBirth,password);
+            
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
-        public void firstNameMin()
+        public void firstNameMinPlusOne()
         {
-            //create an instance of the class we want to create
-            clsStaff AnAddress = new clsStaff();
-            //string variable to store any error message
+            
+            clsStaff AStaff = new clsStaff();
+          
             String Error = "";
-            //create some test data to pass to the method
-            string firstName = "a"; //this should be ok
+           
+            string firstName = "aa"; //this should be ok
             //invoke the method
-            Error = AnAddress.Valid(firstName, surname, managerOrStaff, dateOfBirth, password);
-            //test to see that the result is correct
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+            
             Assert.AreEqual(Error, "");
+
         }
 
+        [TestMethod]
+        public void firstNameMaxLessOne()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string firstName = "aaaaa"; 
+            
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void firstNameMax()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string firstName = "aaaaaa";
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void firstNameMid()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string firstName = "aaa";
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void firstNameExtremeMax()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string firstName = "";
+            firstName = firstName.PadRight(500, 'a');
+
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void surnameMinLessOne()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            String surname = "";
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void surnameMin()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string surname = "a";
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void surnameMinPlusOne()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string surname = "aa"; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void surnameMaxLessOne()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string surname = "aaaaa";
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void surnameMax()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string surname = "aaaaaa";
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void surnameMid()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string surname = "aaa";
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void surnameExtremeMax()
+        {
+
+            clsStaff AStaff = new clsStaff();
+
+            String Error = "";
+
+            string surname = "";
+            surname = surname.PadRight(500, 'a');
+
+
+            Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+
+            Assert.AreEqual(Error, "");
+
+        }
 
     }
 }
