@@ -24,18 +24,14 @@ namespace Testing1
         [TestMethod]
         public void StockListOK()
         {
-            //create instance of clsCustomerCollection
+            
             clsStockCollection StockCollection = new clsStockCollection();
 
-            //create some test data to assign to the property
-            //in this case data needs to be a list of objects
+
             List<clsStock> TestList = new List<clsStock>();
 
-            //add an item to  TestList
-            //create the item of the test data
             clsStock TestItem = new clsStock();
 
-            //set properties of TestItem
             TestItem.GameTitle = "Devil May Cry";
             TestItem.Platform = "Playstation 4";
             TestItem.Price = 12;
@@ -43,13 +39,10 @@ namespace Testing1
             TestItem.InStock = true;
             TestItem.StockQuantity = 2;
 
-            //add TestItem to TestList
             TestList.Add(TestItem);
 
-            //assign TestList to AllCustomers.CustomerList
             StockCollection.StockList = TestList;
 
-            //test to see if the two values are the same
             Assert.AreEqual(StockCollection.StockList, TestList);
         }
 
@@ -128,6 +121,44 @@ namespace Testing1
             PrimaryKey = StockCollection.Add();
 
             TestGame.productId = PrimaryKey;
+
+            StockCollection.ThisGame.Find(PrimaryKey);
+
+            Assert.AreEqual(StockCollection.ThisGame, TestGame);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOk()
+        {
+            clsStockCollection StockCollection = new clsStockCollection();
+
+            clsStock TestGame = new clsStock();
+
+            Int32 PrimaryKey = 0;
+
+            TestGame.GameTitle = "Bloodborne";
+            TestGame.Platform = "Playstation 4";
+            TestGame.Price = 40;
+            TestGame.ReleaseDate = DateTime.Now.Date;
+            TestGame.InStock = true;
+            TestGame.StockQuantity = 4;
+
+            StockCollection.ThisGame = TestGame;
+
+            PrimaryKey = StockCollection.Add();
+
+            TestGame.productId = PrimaryKey;
+
+            TestGame.GameTitle = "Bloodborne";
+            TestGame.Platform = "Playstation 4";
+            TestGame.Price = 25;
+            TestGame.ReleaseDate = DateTime.Now.Date;
+            TestGame.InStock = true;
+            TestGame.StockQuantity = 8;
+
+            StockCollection.ThisGame = TestGame;
+
+            StockCollection.Update();
 
             StockCollection.ThisGame.Find(PrimaryKey);
 

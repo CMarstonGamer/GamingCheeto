@@ -8,9 +8,18 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 ProductId;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ProductId = Convert.ToInt32(Session["ProductId"]);
+        if(IsPostBack == false)
+        {
+            if(ProductId != -1)
+            {
+                DisplayGame();
+            }
+        }
     }
 
     protected void btnOk_Click(object sender, EventArgs e)
@@ -103,4 +112,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         }
     }
+
+    void DisplayGame()
+    {
+        clsStockCollection StockCollection = new clsStockCollection();
+
+        StockCollection.ThisGame.Find(ProductId);
+
+        txtProductId.Text = StockCollection.ThisGame.productId.ToString();
+        txtGameTitle.Text = StockCollection.ThisGame.GameTitle;
+        txtPrice.Text = StockCollection.ThisGame.Price.ToString();
+        drpPlatform.Text = StockCollection.ThisGame.Platform;
+        txtReleaseDate.Text = StockCollection.ThisGame.ReleaseDate.ToString();
+        txtStockQuantity.Text = StockCollection.ThisGame.StockQuantity.ToString();
+        
+
+    }
+                
 }

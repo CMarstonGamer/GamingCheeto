@@ -90,6 +90,20 @@ namespace ClassLibrary
                 mThisGame = value;
             }
         }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@GameTitle", mThisGame.GameTitle);
+            DB.AddParameter("@Price", mThisGame.Price);
+            DB.AddParameter("@Platform", mThisGame.Platform);
+            DB.AddParameter("@StockQuantity", mThisGame.StockQuantity);
+            DB.AddParameter("@InStock", mThisGame.InStock);
+            DB.AddParameter("@ReleaseDate", mThisGame.ReleaseDate);
+
+            DB.Execute("sproc_tblStock_Update");
+        }
     }
 
 }
