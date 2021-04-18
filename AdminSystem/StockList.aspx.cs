@@ -31,8 +31,26 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void btnAdd_Click(Object sender, EventArgs e)
     {
-        Session["productId"] = -1;
+        Session["ProductId"] = -1;
 
         Response.Redirect("StockDataEntry.apsx");
+    }
+
+    protected void btnEdit_Click(Object sender, EventArgs e)
+    {
+        Int32 ProductId;
+
+        if(lstStockCollection.SelectedIndex != -1)
+        {
+            ProductId = Convert.ToInt32(lstStockCollection.SelectedValue);
+
+            Session["ProductId"] = ProductId;
+
+            Response.Redirect("StockDataEntry.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record to delete from the list";
+        }
     }
 }
