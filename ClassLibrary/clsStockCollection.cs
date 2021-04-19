@@ -95,6 +95,7 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
 
+            DB.AddParameter("@ProductId", mThisGame.productId);
             DB.AddParameter("@GameTitle", mThisGame.GameTitle);
             DB.AddParameter("@Price", mThisGame.Price);
             DB.AddParameter("@Platform", mThisGame.Platform);
