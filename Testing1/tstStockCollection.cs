@@ -44,19 +44,7 @@ namespace Testing1
             StockCollection.StockList = TestList;
 
             Assert.AreEqual(StockCollection.StockList, TestList);
-        }
-
-        [TestMethod]
-        public void CountStockOk()
-        {
-            clsStockCollection StockCollection = new clsStockCollection();
-
-            Int32 SomeCount = 0;
-
-            StockCollection.Count = SomeCount;
-
-            Assert.AreEqual(StockCollection.Count, SomeCount);
-        }
+        }      
 
         [TestMethod]
         public void ThisGameOk()
