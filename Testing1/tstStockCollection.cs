@@ -137,7 +137,7 @@ namespace Testing1
 
             TestGame.productId = PrimaryKey;
 
-            TestGame.GameTitle = "Assassins Creed Syndicate";
+            TestGame.GameTitle = "Assassins Creed Unity";
             TestGame.Platform = "Playstation 4";
             TestGame.Price = 20;
             TestGame.ReleaseDate = DateTime.Now.Date;

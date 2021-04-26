@@ -31,20 +31,20 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void btnAdd_Click(Object sender, EventArgs e)
     {
-        Session["ProductId"] = -1;
+        Session["productId"] = -1;
 
         Response.Redirect("StockDataEntry.apsx");
     }
 
     protected void btnEdit_Click(Object sender, EventArgs e)
     {
-        Int32 ProductId;
+        Int32 productId;
 
         if(lstStockCollection.SelectedIndex != -1)
         {
-            ProductId = Convert.ToInt32(lstStockCollection.SelectedValue);
+            productId = Convert.ToInt32(lstStockCollection.SelectedValue);
 
-            Session["ProductId"] = ProductId;
+            Session["productId"] = productId;
 
             Response.Redirect("StockDataEntry.aspx");
         }
