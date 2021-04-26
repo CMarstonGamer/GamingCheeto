@@ -105,6 +105,15 @@ namespace ClassLibrary
 
             DB.Execute("sproc_tblStock_Update");
         }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@productId", mThisGame.productId);
+
+            DB.Execute("sproc_tblStock_Delete");
+        }
     }
 
 }
