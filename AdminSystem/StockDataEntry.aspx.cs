@@ -31,58 +31,43 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string Platform = drpPlatform.Text;
         string ReleaseDate = txtReleaseDate.Text;
         string StockQuantity = txtStockQuantity.Text;
-        Boolean InStock = true;
+        Boolean InStock = chkInStock.Checked;
         string Error = "";
 
         Error = Game.Valid(GameTitle, Price, Platform, StockQuantity, ReleaseDate);
 
         if (Error == "")
         {
-            if (Convert.ToInt32(StockQuantity) == 0)
+            Game.GameTitle = GameTitle;
+            Game.Price = Convert.ToInt32(Price);
+            Game.Platform = Platform;
+            Game.ReleaseDate = Convert.ToDateTime(ReleaseDate);
+            Game.StockQuantity = Convert.ToInt32(StockQuantity);
+            Game.InStock = InStock;
+
+            clsStockCollection StockCollection = new clsStockCollection();
+
+            StockCollection.ThisGame = Game;          
+
+            if (ProductId == -1)
             {
-                InStock = false;
-                Game.GameTitle = GameTitle;
-                Game.Price = Convert.ToInt32(Price);
-                Game.Platform = Platform;
-                Game.ReleaseDate = Convert.ToDateTime(ReleaseDate);
-                Game.StockQuantity = Convert.ToInt32(StockQuantity);
-                Game.InStock = InStock;
-
-                clsStockCollection StockCollection = new clsStockCollection();
-
                 StockCollection.ThisGame = Game;
-
                 StockCollection.Add();
-
                 Response.Redirect("StockList.aspx");
             }
-            if (Convert.ToInt32(StockQuantity) > 0)
+            else
             {
-                Game.GameTitle = GameTitle;
-                Game.Price = Convert.ToInt32(Price);
-                Game.Platform = Platform;
-                Game.ReleaseDate = Convert.ToDateTime(ReleaseDate);
-                Game.StockQuantity = Convert.ToInt32(StockQuantity);
-                Game.InStock = InStock;
-
-                clsStockCollection StockCollection = new clsStockCollection();
-
+                StockCollection.ThisGame.Find(ProductId);
                 StockCollection.ThisGame = Game;
-
-                StockCollection.Add();
-
+                StockCollection.Update();
                 Response.Redirect("StockList.aspx");
             }
+            
         }
 
         else
         {
             lblError.Text = Error;
-        }
-
-        if(chkInStock.Checked == false)
-        {
-            txtStockQuantity.Enabled = false;
         }
     }
 
@@ -130,6 +115,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         drpPlatform.Text = StockCollection.ThisGame.Platform;
         txtReleaseDate.Text = StockCollection.ThisGame.ReleaseDate.ToString();
         txtStockQuantity.Text = StockCollection.ThisGame.StockQuantity.ToString();
+        chkInStock.Checked = StockCollection.ThisGame.InStock;
         
 
     }
