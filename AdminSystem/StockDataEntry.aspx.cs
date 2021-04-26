@@ -8,14 +8,14 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-    Int32 ProductId;
+    Int32 productId;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        ProductId = Convert.ToInt32(Session["ProductId"]);
+        productId = Convert.ToInt32(Session["productId"]);
         if(IsPostBack == false)
         {
-            if(ProductId != -1)
+            if(productId != -1)
             {
                 DisplayGame();
             }
@@ -45,24 +45,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             Game.StockQuantity = Convert.ToInt32(StockQuantity);
             Game.InStock = InStock;
 
-            clsStockCollection StockCollection = new clsStockCollection();
+            clsStockCollection StockCollection = new clsStockCollection();       
 
-            StockCollection.ThisGame = Game;          
-
-            if (ProductId == -1)
+            if (productId == -1)
             {
                 StockCollection.ThisGame = Game;
                 StockCollection.Add();
-                Response.Redirect("StockList.aspx");
             }
             else
             {
-                StockCollection.ThisGame.Find(ProductId);
+                StockCollection.ThisGame.Find(productId);
                 StockCollection.ThisGame = Game;
-                StockCollection.Update();
-                Response.Redirect("StockList.aspx");
+                StockCollection.Update();      
             }
-            
+            Response.Redirect("StockList.aspx");
         }
 
         else
@@ -80,15 +76,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         clsStock Game = new clsStock();
 
-        Int32 ProductId;
+        Int32 productId;
 
         Boolean Found = false;
 
-        ProductId = Convert.ToInt32(txtProductId.Text);
+        productId = Convert.ToInt32(txtProductId.Text);
 
-        Game.productId = ProductId;
+        Game.productId = productId;
 
-        Found = Game.Find(ProductId);
+        Found = Game.Find(productId);
 
         if (Found == true)
         {
@@ -107,7 +103,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         clsStockCollection StockCollection = new clsStockCollection();
 
-        StockCollection.ThisGame.Find(ProductId);
+        StockCollection.ThisGame.Find(productId);
 
         txtProductId.Text = StockCollection.ThisGame.productId.ToString();
         txtGameTitle.Text = StockCollection.ThisGame.GameTitle;
