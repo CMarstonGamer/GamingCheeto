@@ -53,9 +53,9 @@ namespace Testing1
 
             clsStock TestGame = new clsStock();
 
-            TestGame.GameTitle = "Devil May Cry";
-            TestGame.Platform = "Playstation 4";
-            TestGame.Price = 12;
+            TestGame.GameTitle = "Grand Theft Auto: Vice City Stories";
+            TestGame.Platform = "PSP";
+            TestGame.Price = 20;
             TestGame.ReleaseDate = DateTime.Now.Date;
             TestGame.InStock = true;
             TestGame.StockQuantity = 2;
@@ -74,12 +74,12 @@ namespace Testing1
 
             clsStock TestGame = new clsStock();
 
-            TestGame.GameTitle = "Devil May Cry";
-            TestGame.Platform = "Playstation 4";
+            TestGame.GameTitle = "Pokemon Sun";
+            TestGame.Platform = "3DS";
             TestGame.Price = 12;
             TestGame.ReleaseDate = DateTime.Now.Date;
-            TestGame.InStock = false;
-            TestGame.StockQuantity = 2;
+            TestGame.InStock = true;
+            TestGame.StockQuantity = 21;
 
             TestList.Add(TestGame);
 
@@ -97,9 +97,9 @@ namespace Testing1
 
             Int32 PrimaryKey = 0;
 
-            TestGame.GameTitle = "Devil May Cry";
-            TestGame.Platform = "Playstation 4";
-            TestGame.Price = 12;
+            TestGame.GameTitle = "Crash Bandicoot";
+            TestGame.Platform = "Playstation 1";
+            TestGame.Price = 10;
             TestGame.ReleaseDate = DateTime.Now.Date;
             TestGame.InStock = true;
             TestGame.StockQuantity = 2;
@@ -124,7 +124,7 @@ namespace Testing1
 
             Int32 PrimaryKey = 0;
 
-            TestGame.GameTitle = "Bloodborne";
+            TestGame.GameTitle = "Assassins Creed: Black Flag";
             TestGame.Platform = "Playstation 4";
             TestGame.Price = 40;
             TestGame.ReleaseDate = DateTime.Now.Date;
@@ -137,9 +137,9 @@ namespace Testing1
 
             TestGame.productId = PrimaryKey;
 
-            TestGame.GameTitle = "Bloodborne";
+            TestGame.GameTitle = "Assassins Creed Syndicate";
             TestGame.Platform = "Playstation 4";
-            TestGame.Price = 25;
+            TestGame.Price = 20;
             TestGame.ReleaseDate = DateTime.Now.Date;
             TestGame.InStock = true;
             TestGame.StockQuantity = 8;
@@ -151,6 +151,39 @@ namespace Testing1
             StockCollection.ThisGame.Find(PrimaryKey);
 
             Assert.AreEqual(StockCollection.ThisGame, TestGame);
+        }
+
+        [TestMethod]
+        public void DeleteMethodOk()
+        {
+            clsStockCollection StockCollection = new clsStockCollection();
+
+            clsStock TestGame = new clsStock();
+
+            Int32 PrimaryKey = 0;
+
+            TestGame.GameTitle = "Ratchet & Clank";
+            TestGame.Platform = "Playstation 2";
+            TestGame.Price = 25;
+            TestGame.ReleaseDate = DateTime.Now.Date;
+            TestGame.InStock = true;
+            TestGame.StockQuantity = 8;
+
+            StockCollection.ThisGame = TestGame;
+
+            PrimaryKey = StockCollection.Add();
+
+            TestGame.productId = PrimaryKey;
+
+            StockCollection.ThisGame.Find(PrimaryKey);
+
+            StockCollection.Delete();
+
+            Boolean Found = StockCollection.ThisGame.Find(PrimaryKey);
+
+            Assert.IsFalse(Found);
+
+
         }
     }
 }
