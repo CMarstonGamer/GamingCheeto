@@ -94,7 +94,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         Boolean Found = false;
 
-        ProductId = Convert.ToInt32(txtProductId);
+        ProductId = Convert.ToInt32(txtProductId.Text);
 
         Game.productId = ProductId;
 
