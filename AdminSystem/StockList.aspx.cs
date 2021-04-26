@@ -50,7 +50,7 @@ public partial class _1_List : System.Web.UI.Page
         }
         else
         {
-            lblError.Text = "Please select a record to delete from the list";
+            lblError.Text = "Please select a record to Edit from the list";
         }
     }
 }

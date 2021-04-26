@@ -79,6 +79,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             lblError.Text = Error;
         }
+
+        if(chkInStock.Checked == false)
+        {
+            txtStockQuantity.Enabled = false;
+        }
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
