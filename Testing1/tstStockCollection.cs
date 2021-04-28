@@ -215,11 +215,11 @@ namespace Testing1
 
             Boolean Ok = true;
 
-            FilterGameTitle.FilterByGameTitle("Fallout 4");
+            FilterGameTitle.FilterByGameTitle("Crash Bandicoot");
 
             if(FilterGameTitle.Count == 1)
             {
-                if(FilterGameTitle.StockList[0].productId != 5)
+                if(FilterGameTitle.StockList[0].productId != 61)
                 {
                     Ok = false;
                 }
@@ -251,7 +251,7 @@ namespace Testing1
 
             FilterPrice.FilterByPrice(1);
 
-            Assert.AreEqual(0, FilterGameTitle.Count);
+            Assert.AreEqual(0, FilterPrice.Count);
         }
 
         [TestMethod]
@@ -265,7 +265,7 @@ namespace Testing1
 
             if (FilterPrice.Count == 1)
             {
-                if (FilterPrice.StockList[0].productId != 48)
+                if (FilterPrice.StockList[0].productId != 61)
                 {
                     Ok = false;
                 }

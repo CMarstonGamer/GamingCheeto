@@ -33,7 +33,7 @@ public partial class _1_List : System.Web.UI.Page
     {
         Session["productId"] = -1;
 
-        Response.Redirect("StockDataEntry.apsx");
+        Response.Redirect("StockDataEntry.aspx");
     }
 
     protected void btnEdit_Click(Object sender, EventArgs e)
@@ -79,6 +79,8 @@ public partial class _1_List : System.Web.UI.Page
 
         StockCollection.FilterByGameTitle(txtGameTitle.Text);
 
+        lstStockCollection.DataSource = StockCollection.StockList;
+
         lstStockCollection.DataValueField = "productId";
 
         lstStockCollection.DataTextField = "GameTitle";
@@ -112,6 +114,8 @@ public partial class _1_List : System.Web.UI.Page
             clsStockCollection StockCollection = new clsStockCollection();
 
             StockCollection.FilterByPrice(FilteredPrice);
+
+            lstStockCollection.DataSource = StockCollection.StockList;
 
             lstStockCollection.DataValueField = "productId";
 

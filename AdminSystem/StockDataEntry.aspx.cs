@@ -9,7 +9,7 @@ using ClassLibrary;
 public partial class _1_DataEntry : System.Web.UI.Page
 {
     Int32 productId;
-
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         productId = Convert.ToInt32(Session["productId"]);
@@ -51,14 +51,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
             {
                 StockCollection.ThisGame = Game;
                 StockCollection.Add();
+                Response.Redirect("StockList.aspx");
             }
             else
             {
                 StockCollection.ThisGame.Find(productId);
                 StockCollection.ThisGame = Game;
-                StockCollection.Update();      
+                StockCollection.Update();
+                Response.Redirect("StockList.aspx");
             }
-            Response.Redirect("StockList.aspx");
+            
         }
 
         else
@@ -69,7 +71,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("StockList.aspx");
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

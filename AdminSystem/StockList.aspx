@@ -11,8 +11,8 @@
         <div>
         </div>
         <asp:Button ID="btnDelete" OnClick="btnDelete_Click" runat="server" style="z-index: 1; left: 161px; top: 424px; position: absolute" Text="Delete" />
-        <asp:Button ID="btnApply" runat="server" style="z-index: 1; left: 516px; top: 105px; position: absolute; right: 503px" Text="Apply" />
-        <asp:Button ID="btnClear" runat="server" style="z-index: 1; left: 715px; top: 103px; position: absolute" Text="Clear" />
+        <asp:Button ID="btnApply" OnClick="btnApply_Click" runat="server" style="z-index: 1; left: 516px; top: 105px; position: absolute; right: 503px" Text="Apply" />
+        <asp:Button ID="btnClear" OnClick="btnClear_Ok" runat="server" style="z-index: 1; left: 715px; top: 103px; position: absolute" Text="Clear" />
         <asp:Button ID="btnClearPrice" runat="server" style="z-index: 1; left: 715px; top: 248px; position: absolute" Text="Clear" />
         <asp:ListBox ID="lstStockCollection" runat="server" style="z-index: 1; left: 20px; top: 56px; position: absolute; height: 339px; width: 448px"></asp:ListBox>
         <asp:Button ID="btnEdit" OnClick="btnEdit_Click" runat="server" style="z-index: 1; left: 90px; top: 423px; position: absolute" Text="Edit" />

@@ -13,17 +13,17 @@ namespace ClassLibrary
 
 
         public clsStockCollection()
-        {
-            Int32 Index = 0;
+        {           
+            //Int32 Index = 0;
 
-            Int32 RecordCount = 0;
+            //Int32 RecordCount = 0;
 
             clsDataConnection DB = new clsDataConnection();
 
             DB.Execute("sproc_tblStock_SelectAll");
 
             PopulateArray(DB);
-
+            /*
             RecordCount = DB.Count;
 
             while (Index < RecordCount)
@@ -41,9 +41,11 @@ namespace ClassLibrary
                 mStockList.Add(Game);
 
                 Index++;
-            }
+            }*/
         }
 
+
+        
         void PopulateArray(clsDataConnection DB)
         {
             Int32 Index = 0;
@@ -144,6 +146,7 @@ namespace ClassLibrary
             DB.AddParameter("@productId", mThisGame.productId);
 
             DB.Execute("sproc_tblStock_Delete");
+
         }
 
         public void FilterByGameTitle(string GameTitle)
@@ -152,7 +155,9 @@ namespace ClassLibrary
 
             DB.AddParameter("@GameTitle", GameTitle);
 
-            DB.Execute("sproc_tblStock_SelectGameTile");
+            DB.Execute("sproc_tblStock_SelectGameTitle");
+
+            PopulateArray(DB);
         }
 
         public void FilterByPrice(int Price)
@@ -162,6 +167,8 @@ namespace ClassLibrary
             DB.AddParameter("@Price", Price);
 
             DB.Execute("sproc_tblStock_SelectPrice");
+
+            PopulateArray(DB);
         }
     }
 
