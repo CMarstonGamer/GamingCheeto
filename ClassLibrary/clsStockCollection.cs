@@ -11,6 +11,7 @@ namespace ClassLibrary
         List<clsStock> mStockList = new List<clsStock>();
         clsStock mThisGame = new clsStock();
 
+
         public clsStockCollection()
         {
             Int32 Index = 0;
@@ -21,7 +22,37 @@ namespace ClassLibrary
 
             DB.Execute("sproc_tblStock_SelectAll");
 
+            PopulateArray(DB);
+
             RecordCount = DB.Count;
+
+            while (Index < RecordCount)
+            {
+                clsStock Game = new clsStock();
+
+                Game.productId = Convert.ToInt32(DB.DataTable.Rows[Index]["productId"]);
+                Game.GameTitle = Convert.ToString(DB.DataTable.Rows[Index]["GameTitle"]);
+                Game.Price = Convert.ToInt32(DB.DataTable.Rows[Index]["Price(£)"]);
+                Game.Platform = Convert.ToString(DB.DataTable.Rows[Index]["Platform"]);
+                Game.InStock = Convert.ToBoolean(DB.DataTable.Rows[Index]["InStock"]);
+                Game.StockQuantity = Convert.ToInt32(DB.DataTable.Rows[Index]["StockQuantity"]);
+                Game.ReleaseDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["ReleaseDate"]);
+
+                mStockList.Add(Game);
+
+                Index++;
+            }
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+
+            Int32 RecordCount;
+
+            RecordCount = DB.Count;
+
+            mStockList = new List<clsStock>();
 
             while (Index < RecordCount)
             {
@@ -113,6 +144,24 @@ namespace ClassLibrary
             DB.AddParameter("@productId", mThisGame.productId);
 
             DB.Execute("sproc_tblStock_Delete");
+        }
+
+        public void FilterByGameTitle(string GameTitle)
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@GameTitle", GameTitle);
+
+            DB.Execute("sproc_tblStock_SelectGameTile");
+        }
+
+        public void FilterByPrice(int Price)
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@Price", Price);
+
+            DB.Execute("sproc_tblStock_SelectPrice");
         }
     }
 

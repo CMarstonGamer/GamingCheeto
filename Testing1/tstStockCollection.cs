@@ -185,5 +185,97 @@ namespace Testing1
 
 
         }
+
+        [TestMethod]
+        public void FilterByGameTitleOk()
+        {
+            clsStockCollection StockCollection = new clsStockCollection();
+
+            clsStockCollection FilterGameTitle = new clsStockCollection();
+
+            FilterGameTitle.FilterByGameTitle ("");
+
+            Assert.AreEqual(StockCollection.Count, FilterGameTitle.Count);
+        }
+
+        [TestMethod]
+        public void FilterByGameTitleNoneFound()
+        {
+            clsStockCollection FilterGameTitle = new clsStockCollection();
+
+            FilterGameTitle.FilterByGameTitle("Superman 64");
+
+            Assert.AreEqual(0, FilterGameTitle.Count);
+        }
+
+        [TestMethod]
+        public void FilterByGameTitleFound()
+        {
+            clsStockCollection FilterGameTitle = new clsStockCollection();
+
+            Boolean Ok = true;
+
+            FilterGameTitle.FilterByGameTitle("Fallout 4");
+
+            if(FilterGameTitle.Count == 1)
+            {
+                if(FilterGameTitle.StockList[0].productId != 5)
+                {
+                    Ok = false;
+                }
+            }
+            else
+            {
+                Ok = false;
+            }
+
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void FilterByPriceOk()
+        {
+            clsStockCollection StockCollection = new clsStockCollection();
+
+            clsStockCollection FilterPrice = new clsStockCollection();
+
+            FilterPrice.FilterByPrice(0);
+
+            Assert.AreEqual(StockCollection.Count, FilterPrice.Count);
+        }
+
+        [TestMethod]
+        public void FilterByPriceNoneFound()
+        {
+            clsStockCollection FilterPrice = new clsStockCollection();
+
+            FilterPrice.FilterByPrice(1);
+
+            Assert.AreEqual(0, FilterGameTitle.Count);
+        }
+
+        [TestMethod]
+        public void FilterByPriceFound()
+        {
+            clsStockCollection FilterPrice = new clsStockCollection();
+
+            Boolean Ok = true;
+
+            FilterPrice.FilterByPrice(11);
+
+            if (FilterPrice.Count == 1)
+            {
+                if (FilterPrice.StockList[0].productId != 48)
+                {
+                    Ok = false;
+                }
+            }
+            else
+            {
+                Ok = false;
+            }
+
+            Assert.IsTrue(Ok);
+        }
     }
 }

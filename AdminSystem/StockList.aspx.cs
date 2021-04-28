@@ -72,4 +72,76 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record to delete";
         }
     }
+
+    protected void btnApply_Click(Object sender, EventArgs e)
+    {
+        clsStockCollection StockCollection = new clsStockCollection();
+
+        StockCollection.FilterByGameTitle(txtGameTitle.Text);
+
+        lstStockCollection.DataValueField = "productId";
+
+        lstStockCollection.DataTextField = "GameTitle";
+
+        lstStockCollection.DataBind();
+    }
+
+    protected void btnClear_Ok(Object sender, EventArgs e)
+    {
+        clsStockCollection StockCollection = new clsStockCollection();
+
+        StockCollection.FilterByGameTitle("");
+
+        txtGameTitle.Text = "";
+
+        lstStockCollection.DataSource = StockCollection.StockList;
+
+        lstStockCollection.DataValueField = "productId";
+
+        lstStockCollection.DataTextField = "GameTitle";
+
+        lstStockCollection.DataBind();
+    }
+
+    protected void btnApplyPrice_Click(Object sender, EventArgs e)
+    {
+        try
+        {
+            Int32 FilteredPrice = Convert.ToInt32(txtPrice.Text);
+
+            clsStockCollection StockCollection = new clsStockCollection();
+
+            StockCollection.FilterByPrice(FilteredPrice);
+
+            lstStockCollection.DataValueField = "productId";
+
+            lstStockCollection.DataTextField = "GameTitle";
+
+            lstStockCollection.DataBind();
+        }
+        catch
+        {
+            lblError.Text = "Please enter a Number";
+        }
+
+    }
+
+    protected void btnClearPrice_Ok(Object sender, EventArgs e)
+    {
+        clsStockCollection StockCollection = new clsStockCollection();
+
+        StockCollection.FilterByPrice(0);
+
+        txtPrice.Text = "";
+
+        lstStockCollection.DataSource = StockCollection.StockList;
+
+        lstStockCollection.DataValueField = "productId";
+
+        lstStockCollection.DataTextField = "GameTitle";
+
+        lstStockCollection.DataBind();
+    }
+
+
 }
