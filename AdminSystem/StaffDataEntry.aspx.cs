@@ -19,11 +19,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOk_Click1(object sender, EventArgs e)
     {
         clsStaff AStaff = new clsStaff();
-        AStaff.firstName = txtfirstName.Text;
-        AStaff.staffId = int.Parse(txtStaffId.Text);
-        AStaff.surname = txtsurname.Text;
-        AStaff.dateOfBirth = DateTime.Parse(txtdateOfBirth.Text);
-        AStaff.password = txtpassword.Text;
+        string firstName = txtfirstName.Text;
+        string staffId = txtStaffId.Text;
+        string surname = txtsurname.Text;
+        string dateOfBirth = txtdateOfBirth.Text;
+        string password = txtpassword.Text;
+        string Error = "";
+
         if (chkmanagerOrStaff.Checked)
         {
             AStaff.managerOrStaff = true;
@@ -31,9 +33,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             AStaff.managerOrStaff = false;
         }
+        Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
+        if (Error == "")
+        {
+            AStaff.firstName = firstName;
+            AStaff.surname = surname;
+            AStaff.dateOfBirth = Convert.ToDateTime(dateOfBirth);
+            AStaff.password = password;
 
-        Session["AStaff"] = AStaff;
-        Response.Redirect("StaffViewer.aspx");
+            Session["AStaff"] = AStaff;
+            Response.Write("StaffViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
