@@ -41,8 +41,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.dateOfBirth = Convert.ToDateTime(dateOfBirth);
             AStaff.password = password;
 
-            Session["AStaff"] = AStaff;
-            Response.Write("StaffViewer.aspx");
+            clsStaffCollection StaffList = new clsStaffCollection();
+            StaffList.ThisStaff = AStaff;
+            StaffList.Add();
+            
+            Response.Redirect("StaffList.aspx");
         }
         else
         {
