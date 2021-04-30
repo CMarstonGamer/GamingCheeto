@@ -572,7 +572,7 @@ namespace Testing2
 
             Error = AStaff.Valid(firstName, surname, dateOfBirth, password);
 
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
 
         }
         [TestMethod]
@@ -595,7 +595,7 @@ namespace Testing2
 
         }
         [TestMethod]
-        public void dateOfBirthMinExtremeMax()
+        public void dateOfBirthExtremeMax()
         {
 
             clsStaff AStaff = new clsStaff();

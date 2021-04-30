@@ -104,6 +104,8 @@ namespace ClassLibrary
         public string Valid(string firstName, string surname, string dateOfBirth, string password)
         {
             String Error = "";
+            DateTime DateTemp;
+
             if (firstName.Length == 0)
             {
                 Error = Error + "The firstName must not be blank : ";
@@ -129,10 +131,24 @@ namespace ClassLibrary
             {
                 Error = Error + "The password must be less than 50 characters: ";
             }
+           
             try
+
             {
-                DateTime DateTemp = Convert.ToDateTime(dateOfBirth);
+                DateTemp = Convert.ToDateTime(dateOfBirth);
+                if (DateTemp > DateTime.Today.AddYears(100))
+                {
+                    Error = Error + "Date of Birth can't be in the future: ";
+                }
                 if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "Date of Birth can't be in the future: ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "Date of Birth can't be in the future: ";
+                }
+                if (DateTemp > DateTime.Today.AddDays(1))
                 {
                     Error = Error + "Date of Birth can't be in the future: ";
                 }
