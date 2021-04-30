@@ -138,11 +138,11 @@ namespace ClassLibrary
                 DateTemp = Convert.ToDateTime(dateOfBirth);
                 if (DateTemp > DateTime.Today.AddYears(100))
                 {
-                    Error = Error + "Date of Birth can't be in the future: ";
+                    Error = Error + "Date of Birth can't be 100 years in the future: ";
                 }
-                if (DateTemp < DateTime.Now.Date)
+                if (DateTemp <= DateTime.Now.Date.AddDays(-1))
                 {
-                    Error = Error + "Date of Birth can't be in the future: ";
+                    Error = Error + "Date of Birth can't be yesterday: ";
                 }
                 if (DateTemp > DateTime.Now.Date)
                 {
@@ -150,7 +150,11 @@ namespace ClassLibrary
                 }
                 if (DateTemp > DateTime.Today.AddDays(1))
                 {
-                    Error = Error + "Date of Birth can't be in the future: ";
+                    Error = Error + "Date of Birth can't be in the future by 1 day: ";
+                }
+                if (DateTemp <= DateTime.Today.AddYears(-100))
+                {
+                    Error = Error + "Date of Birth can't be in the past by more than 100 years: ";
                 }
             }
             catch

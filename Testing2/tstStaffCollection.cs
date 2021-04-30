@@ -78,5 +78,24 @@ namespace Testing2
         //    clsStaffCollection AllStaff = new clsStaffCollection();
         //    Assert.AreEqual(AllStaff.Count, 2);
         //}
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestStaff = new clsStaff();
+            Int32 PrimaryKey = 0;
+            TestStaff.managerOrStaff = true;
+            TestStaff.firstName = "Chris";
+            TestStaff.surname = "Marston";
+            TestStaff.dateOfBirth = DateTime.Now.Date;
+            TestStaff.password = "bruh";
+            TestStaff.staffId = 6;
+            AllStaff.ThisStaff = TestStaff;
+            PrimaryKey = AllStaff.Add();
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            Assert.AreEqual(AllStaff.ThisStaff, TestStaff);
+        }
+
     }
 }
