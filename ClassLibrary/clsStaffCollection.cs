@@ -68,11 +68,11 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
             //DB.AddParameter("@staffId", mThisStaff.staffId);
-            DB.AddParameter("@surname", mThisStaff.surname);
-            DB.AddParameter("@firstName", mThisStaff.firstName);
-            DB.AddParameter("@dateOfBirth", mThisStaff.dateOfBirth);
-            DB.AddParameter("@managerOrStaff", mThisStaff.managerOrStaff);
-            DB.AddParameter("@password", mThisStaff.password);
+            DB.AddParameter("@Surname", mThisStaff.surname);
+            DB.AddParameter("@Firstname", mThisStaff.firstName);
+            DB.AddParameter("@DateOfBirth", mThisStaff.dateOfBirth);
+            DB.AddParameter("@ManagerOrStaff", mThisStaff.managerOrStaff);
+            DB.AddParameter("@Password", mThisStaff.password);
            
             return DB.Execute("sproc_tblStaff_Insert");
         }
@@ -80,13 +80,20 @@ namespace ClassLibrary
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@staffId", mThisStaff.staffId);
-            DB.AddParameter("@firstName", mThisStaff.firstName);
-            DB.AddParameter("@surname", mThisStaff.surname);
-            DB.AddParameter("@managerOrStaff", mThisStaff.managerOrStaff);
-            DB.AddParameter("@dateOfBirth", mThisStaff.dateOfBirth);
-            DB.AddParameter("@password", mThisStaff.password);
+            DB.AddParameter("@StaffId", mThisStaff.staffId);
+            DB.AddParameter("@Firstname", mThisStaff.firstName);
+            DB.AddParameter("@Surname", mThisStaff.surname);
+            DB.AddParameter("@ManagerOrStaff", mThisStaff.managerOrStaff);
+            DB.AddParameter("@DateOfBirth", mThisStaff.dateOfBirth);
+            DB.AddParameter("@Password", mThisStaff.password);
             DB.Execute("sproc_tblStaff_Update");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StaffId", mThisStaff.staffId);
+            DB.Execute("sproc_tblStaff_Delete");
         }
     }
 }
