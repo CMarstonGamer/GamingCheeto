@@ -18,8 +18,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create instance of clsCustomer
         clsCustomer ACustomer = new clsCustomer();
 
-        //capture the customer id
-        string CustomerId = txtCustomerId.Text;
         //capture the customer name
         string CustomerName = txtCustomerName.Text;
         //capture the customer email
@@ -32,12 +30,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string CustomerCreationDate = txtCustomerCardNumber.Text;
         //variable to store any error messages
         string Error = "";
+
         //validate the data
-        Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+        Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
         if (Error == "")
         {
-            //capture the customer id
-            ACustomer.CustomerId = Convert.ToInt32(CustomerId);
+            
             //capture the customer name
             ACustomer.CustomerName = CustomerName;
             //capture the customer email
@@ -48,10 +46,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
             ACustomer.CustomerCardNumber = CustomerCardNumber;
             //capture the customer creation date
             ACustomer.CustomerCreationDate = Convert.ToDateTime(CustomerCreationDate);
-            //store the name in the session object
-            Session["ACustomer"] = ACustomer;
-            //navigate to the viewer page
-            Response.Redirect("CustomerViewer.aspx");
+
+            //create a new instance of the customer collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+
+            //set the ThisCustomer property
+            CustomerList.ThisCustomer = ACustomer;
+
+            //add the new record
+            CustomerList.Add();
+
+            //redirect back to the listpage
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {

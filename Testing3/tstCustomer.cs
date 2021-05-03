@@ -313,116 +313,9 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void CustomerIdMinLessOne()
-        {
-            //create instance of clsCustomer
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error message
-            String Error = "";
-            //test data
-            string CustomerId = ""; //this should trigger an error
-            //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, ""); //uses AreNotEqual to verify an unwanted value
-        }
-
-        [TestMethod]
-        public void CustomerIdMin()
-        {
-            //create instance of clsCustomer
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error message
-            String Error = "";
-            //test data
-            string CustomerId = "1";
-            //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void CustomerIdMinPlusOne()
-        {
-            //create instance of clsCustomer
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error message
-            String Error = "";
-            //test data
-            string CustomerId = "12";
-            //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void CustomerIdMaxLessOne()
-        {
-            //create instance of clsCustomer
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error message
-            String Error = "";
-            //test data
-            string CustomerId = "1";
-            CustomerId.PadRight(9999, '1');
-            //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void CustomerIdMax()
-        {
-            //create instance of clsCustomer
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error message
-            String Error = "";
-            //test data
-            string CustomerId = "1";
-            CustomerId.PadRight(10000, '1');
-            //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void CustomerIdMaxPlusOne()
-        {
-            //create instance of clsCustomer
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error message
-            String Error = "";
-            //test data
-            string CustomerId = "10001"; //this should trigger an error
-            //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, ""); //uses AreNotEqual to verify an unwanted value
-        }
-
-        [TestMethod]
-        public void CustomerIdExtremeMax()
-        {
-            //create instance of clsCustomer
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error message
-            String Error = "";
-            //test data
-            string CustomerId = "50000"; //this should trigger an error
-            //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, ""); //uses AreNotEqual to verify an unwanted value
         }
 
         [TestMethod]
@@ -435,7 +328,7 @@ namespace Testing3
             //test data
             string CustomerName = ""; //this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, ""); //uses AreNotEqual to verify an unwanted value
         }
@@ -450,7 +343,7 @@ namespace Testing3
             //test data
             string CustomerName = "A"; //this should be ok
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -465,7 +358,7 @@ namespace Testing3
             //test data
             string CustomerName = "Ab"; //this should be ok
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -481,7 +374,7 @@ namespace Testing3
             string CustomerName = "A";
             CustomerName = CustomerName.PadRight(99, 'a');//this should be ok
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -497,7 +390,7 @@ namespace Testing3
             string CustomerName = "A";
             CustomerName = CustomerName.PadRight(100, 'a');//this should be ok
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -513,7 +406,7 @@ namespace Testing3
             string CustomerName = "A";
             CustomerName = CustomerName.PadRight(50, 'a');//this should be ok
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -529,7 +422,7 @@ namespace Testing3
             string CustomerName = "A";
             CustomerName = CustomerName.PadRight(101, 'a');//this trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -545,7 +438,7 @@ namespace Testing3
             string CustomerName = "A";
             CustomerName = CustomerName.PadRight(1000, 'a');//this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -560,7 +453,7 @@ namespace Testing3
             //test data
             string CustomerEmail = ""; //this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -575,7 +468,7 @@ namespace Testing3
             //test data
             string CustomerEmail = "j";
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -590,7 +483,7 @@ namespace Testing3
             //test data
             string CustomerEmail = "jo";
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -606,7 +499,7 @@ namespace Testing3
             string CustomerEmail = "joebloggs@emai.com";
             CustomerEmail = CustomerEmail.PadLeft(49, 'a');
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -622,7 +515,7 @@ namespace Testing3
             string CustomerEmail = "joebloggs@emai.com";
             CustomerEmail = CustomerEmail.PadLeft(50, 'a');
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -638,7 +531,7 @@ namespace Testing3
             string CustomerEmail = "joebloggs@emai.com";
             CustomerEmail = CustomerEmail.PadLeft(51, 'a'); //this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -654,7 +547,7 @@ namespace Testing3
             string CustomerEmail = "joebloggs@emai.com";
             CustomerEmail = CustomerEmail.PadLeft(500, 'a'); //this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -669,7 +562,7 @@ namespace Testing3
             //test data
             string CustomerPassword = "pass"; //this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -684,7 +577,7 @@ namespace Testing3
             //test data
             string CustomerPassword = "passw";
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -699,7 +592,7 @@ namespace Testing3
             //test data
             string CustomerPassword = "passwo";
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -715,7 +608,7 @@ namespace Testing3
             string CustomerPassword = "password123";
             CustomerPassword = CustomerPassword.PadRight(49, 'a');
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -731,7 +624,7 @@ namespace Testing3
             string CustomerPassword = "password123";
             CustomerPassword = CustomerPassword.PadRight(50, 'a');
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -747,7 +640,7 @@ namespace Testing3
             string CustomerPassword = "password123";
             CustomerPassword = CustomerPassword.PadRight(51, 'a'); //this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -763,7 +656,7 @@ namespace Testing3
             string CustomerPassword = "password123";
             CustomerPassword = CustomerPassword.PadRight(25, 'a');
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -779,7 +672,7 @@ namespace Testing3
             string CustomerPassword = "password123";
             CustomerPassword = CustomerPassword.PadRight(500, 'a'); //this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -794,7 +687,7 @@ namespace Testing3
             //test data
             string CustomerCardNumber = "123456789101234"; //this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -809,7 +702,7 @@ namespace Testing3
             //test data
             string CustomerCardNumber = "1234567891012345";
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -824,7 +717,7 @@ namespace Testing3
             //test data
             string CustomerCardNumber = "12345678910123456"; //this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -840,7 +733,7 @@ namespace Testing3
             string CustomerCardNumber = "12345678910123456";
             CustomerCardNumber = CustomerCardNumber.PadRight(500, '1'); //this should trigger an error
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -861,7 +754,7 @@ namespace Testing3
             //convert the date to variable to string variable
             string CustomerCreationDate = TestDate.ToString();
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -882,7 +775,7 @@ namespace Testing3
             //convert the date to variable to string variable
             string CustomerCreationDate = TestDate.ToString();
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -901,7 +794,7 @@ namespace Testing3
             //convert the date to variable to string variable
             string CustomerCreationDate = TestDate.ToString();
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -922,7 +815,7 @@ namespace Testing3
             //convert the date to variable to string variable
             string CustomerCreationDate = TestDate.ToString();
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -943,7 +836,7 @@ namespace Testing3
             //convert the date to variable to string variable
             string CustomerCreationDate = TestDate.ToString();
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -958,7 +851,7 @@ namespace Testing3
             //test data
             string CustomerCreationDate = "this is not a date!";
             //invoke the method
-            Error = ACustomer.Valid(CustomerId, CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPassword, CustomerCardNumber, CustomerCreationDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }

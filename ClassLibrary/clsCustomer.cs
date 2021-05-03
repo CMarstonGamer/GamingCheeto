@@ -140,7 +140,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string customerId, string customerName, string customerEmail, string customerPassword, string customerCardNumber, string customerCreationDate)
+        public string Valid(string customerName, string customerEmail, string customerPassword, string customerCardNumber, string customerCreationDate)
         {
             //string to store the error
             String Error = "";
@@ -148,25 +148,7 @@ namespace ClassLibrary
             int customerIdInt;
             //date variable to store date values
             DateTime DateTemp;
-
-            //customerId conditions
-            try
-            {
-                customerIdInt = Convert.ToInt32(customerId);
-                if (customerIdInt == 0)
-                {
-                    Error = Error + "The customer id must not be blank : ";
-                }
-                if (customerIdInt > 10000)
-                {
-                    Error = Error + "The customer id is too large : ";
-                }
-            }
-            catch
-            {
-                Error = Error + "The customer id does not have a valid data type : ";
-            }
-            
+                        
             //customerName conditions
             if (customerName.Length == 0)
             {
