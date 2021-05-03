@@ -10,24 +10,27 @@ namespace ClassLibrary
 
         public clsStaffCollection()
         {
-
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblStaff_SelectAll");
-            RecordCount = DB.Count;
-            while (Index < RecordCount)
-            {
-                clsStaff Staff = new clsStaff();
-                Staff.staffId = Convert.ToInt32(DB.DataTable.Rows[Index]["staffId"]);
-                Staff.firstName = Convert.ToString(DB.DataTable.Rows[Index]["firstName"]);
-                Staff.surname = Convert.ToString(DB.DataTable.Rows[Index]["surname"]);
-                Staff.managerOrStaff = Convert.ToBoolean(DB.DataTable.Rows[Index]["managerOrStaff"]);
-                Staff.dateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[Index]["dateOfBirth"]);
-                Staff.password = Convert.ToString(DB.DataTable.Rows[Index]["password"]);
-                mStaffList.Add(Staff);
-                Index++;
-            }
+            PopulateArray(DB);
+
+           // Int32 Index = 0;
+            //Int32 RecordCount = 0;
+           // clsDataConnection DB = new clsDataConnection();
+          //  DB.Execute("sproc_tblStaff_SelectAll");
+           // RecordCount = DB.Count;
+           // while (Index < RecordCount)
+           // {
+            //    clsStaff Staff = new clsStaff();
+              //  Staff.staffId = Convert.ToInt32(DB.DataTable.Rows[Index]["staffId"]);
+             //   Staff.firstName = Convert.ToString(DB.DataTable.Rows[Index]["firstName"]);
+              //  Staff.surname = Convert.ToString(DB.DataTable.Rows[Index]["surname"]);
+             //   Staff.managerOrStaff = Convert.ToBoolean(DB.DataTable.Rows[Index]["managerOrStaff"]);
+              //  Staff.dateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[Index]["dateOfBirth"]);
+               // Staff.password = Convert.ToString(DB.DataTable.Rows[Index]["password"]);
+              //  mStaffList.Add(Staff);
+              //  Index++;
+            //}
         }
 
         public List<clsStaff> StaffList
@@ -94,6 +97,33 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@StaffId", mThisStaff.staffId);
             DB.Execute("sproc_tblStaff_Delete");
+        }
+
+        public void ReportByFirstName(string firstNameFilter)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@firstName", firstNameFilter);
+            DB.Execute("sproc_tblStaff_FilterByFirstName");
+            PopulateArray(DB);
+        }
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+            mStaffList = new List<clsStaff>();
+            while (Index < RecordCount)
+            {
+                clsStaff aStaff = new clsStaff();
+                aStaff.staffId = Convert.ToInt32(DB.DataTable.Rows[Index]["staffId"]);
+                aStaff.firstName = Convert.ToString(DB.DataTable.Rows[Index]["firstName"]);
+                aStaff.surname = Convert.ToString(DB.DataTable.Rows[Index]["surname"]);
+                aStaff.managerOrStaff = Convert.ToBoolean(DB.DataTable.Rows[Index]["managerOrStaff"]);
+                aStaff.dateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[Index]["dateOfBirth"]);
+                aStaff.password = Convert.ToString(DB.DataTable.Rows[Index]["password"]);
+                mStaffList.Add(aStaff);
+                Index++;
+            }
         }
     }
 }

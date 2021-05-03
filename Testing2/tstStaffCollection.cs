@@ -146,5 +146,47 @@ namespace Testing2
             Boolean Found = allStaff.ThisStaff.Find(PrimaryKey);
             Assert.IsFalse(Found);
         }
+
+
+        [TestMethod]
+        public void ReportByFirstNameOK()
+        {
+            clsStaffCollection allStaff = new clsStaffCollection();
+            clsStaffCollection filteredStaff = new clsStaffCollection();
+            filteredStaff.ReportByFirstName("");
+            Assert.AreEqual(allStaff.Count, filteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByFirstNameNoneFound()
+        {
+            clsStaffCollection filteredStaff = new clsStaffCollection();
+            filteredStaff.ReportByFirstName("xxx");
+        }
+        [TestMethod]
+        public void ReportByFirstNameTestDataFound()
+        {
+            clsStaffCollection filteredNames = new clsStaffCollection();
+            Boolean OK = true;
+            filteredNames.ReportByFirstName("xxx");
+            if (filteredNames.Count == 2)
+            {
+
+
+                if (filteredNames.StaffList[0].staffId != 7)
+                {
+                    OK = false;
+                }
+                if (filteredNames.StaffList[1].staffId != 8)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }
