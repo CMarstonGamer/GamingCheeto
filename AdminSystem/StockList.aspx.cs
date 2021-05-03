@@ -130,13 +130,14 @@ public partial class _1_List : System.Web.UI.Page
 
     }
 
-    protected void btnClearPrice_Click(Object sender, EventArgs e)
+
+    protected void btnApplyInStock_Click(object sender, EventArgs e)
     {
+        Boolean mInStock = chkInStock.Checked;
+
         clsStockCollection StockCollection = new clsStockCollection();
 
-        StockCollection.FilterByPrice(0);
-
-        txtPrice.Text = "";
+        StockCollection.FilterByInStock(mInStock);
 
         lstStockCollection.DataSource = StockCollection.StockList;
 
@@ -147,4 +148,51 @@ public partial class _1_List : System.Web.UI.Page
         lstStockCollection.DataBind();
     }
 
+    protected void btnApplyStockQ_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int mStockQ = Convert.ToInt32(txtStockQuantity.Text);
+
+            clsStockCollection StockCollection = new clsStockCollection();
+
+            StockCollection.FilterByStockQuantity(mStockQ);
+
+            lstStockCollection.DataSource = StockCollection.StockList;
+
+            lstStockCollection.DataValueField = "productId";
+
+            lstStockCollection.DataTextField = "GameTitle";
+
+            lstStockCollection.DataBind();
+        }
+        catch
+        {
+            lblError.Text = "Please Enter a Number";
+        }
+    }
+
+    protected void btnApplyDate_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            DateTime ReleaseDate = Convert.ToDateTime(txtReleaseDate.Text);
+
+            clsStockCollection StockCollection = new clsStockCollection();
+
+            StockCollection.FilterByDate(ReleaseDate);
+
+            lstStockCollection.DataSource = StockCollection.StockList;
+
+            lstStockCollection.DataValueField = "productId";
+
+            lstStockCollection.DataTextField = "GameTitle";
+
+            lstStockCollection.DataBind();
+        }
+        catch
+        {
+            lblError.Text = "Please enter a date";
+        }
+    }
 }
