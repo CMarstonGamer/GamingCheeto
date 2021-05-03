@@ -187,18 +187,6 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void FilterByGameTitleOk()
-        {
-            clsStockCollection StockCollection = new clsStockCollection();
-
-            clsStockCollection FilterGameTitle = new clsStockCollection();
-
-            FilterGameTitle.FilterByGameTitle ("");
-
-            Assert.AreEqual(StockCollection.Count, FilterGameTitle.Count);
-        }
-
-        [TestMethod]
         public void FilterByGameTitleNoneFound()
         {
             clsStockCollection FilterGameTitle = new clsStockCollection();
@@ -239,7 +227,7 @@ namespace Testing1
 
             clsStockCollection FilterPrice = new clsStockCollection();
 
-            FilterPrice.FilterByPrice(0);
+            FilterPrice.FilterByPrice(100);
 
             Assert.AreEqual(StockCollection.Count, FilterPrice.Count);
         }
@@ -266,6 +254,110 @@ namespace Testing1
             if (FilterPrice.Count == 1)
             {
                 if (FilterPrice.StockList[0].productId != 61)
+                {
+                    Ok = false;
+                }
+            }
+            else
+            {
+                Ok = false;
+            }
+
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void FilterByInStockFound()
+        {
+            clsStockCollection FilterInStock = new clsStockCollection();
+
+            Boolean Ok = true;
+
+            FilterInStock.FilterByInStock(false);
+
+            if (FilterInStock.Count == 1)
+            {
+                if (FilterInStock.StockList[0].productId != 67)
+                {
+                    Ok = false;
+                }
+            }
+            else
+            {
+                Ok = false;
+            }
+
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void FilterByStockQuantityNoneFound()
+        {
+            clsStockCollection FilterStockQ = new clsStockCollection();
+
+            FilterStockQ.FilterByStockQuantity(100);
+
+            Assert.AreEqual(0, FilterStockQ.Count);
+        }
+
+        [TestMethod]
+        public void FilterByStockQuantityFound()
+        {
+            clsStockCollection FilterStockQ = new clsStockCollection();
+
+            Boolean Ok = true;
+
+            FilterStockQ.FilterByStockQuantity(7);
+
+            if (FilterStockQ.Count == 1)
+            {
+                if (FilterStockQ.StockList[0].productId != 71)
+                {
+                    Ok = false;
+                }
+            }
+            else
+            {
+                Ok = false;
+            }
+
+            Assert.IsTrue(Ok);
+        }
+
+        [TestMethod]
+        public void FilterByDateOk()
+        {
+            clsStockCollection StockCollection = new clsStockCollection();
+
+            clsStockCollection FilterDate = new clsStockCollection();
+
+            FilterDate.FilterByDate(Convert.ToDateTime(01 / 01 / 2018));
+
+            Assert.AreEqual(StockCollection.Count, FilterDate.Count);
+        }
+
+        [TestMethod]
+        public void FilterByDateNoneFound()
+        {
+            clsStockCollection FilterDate = new clsStockCollection();
+
+            FilterDate.FilterByPrice(1);
+
+            Assert.AreEqual(0, FilterDate.Count);
+        }
+
+        [TestMethod]
+        public void FilterByDateFound()
+        {
+            clsStockCollection FilterDate = new clsStockCollection();
+
+            Boolean Ok = true;
+
+            FilterDate.FilterByDate(Convert.ToDateTime(10/10/2015));
+
+            if (FilterDate.Count == 1)
+            {
+                if (FilterDate.StockList[0].productId != 61)
                 {
                     Ok = false;
                 }
