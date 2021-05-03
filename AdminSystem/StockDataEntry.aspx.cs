@@ -43,6 +43,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         if (Error == "")
         {
+            Game.productId = productId;
             Game.GameTitle = GameTitle;
             Game.Price = Convert.ToInt32(Price);
             Game.Platform = Platform;
