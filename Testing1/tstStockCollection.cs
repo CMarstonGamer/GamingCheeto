@@ -331,7 +331,7 @@ namespace Testing1
 
             clsStockCollection FilterDate = new clsStockCollection();
 
-            FilterDate.FilterByDate(Convert.ToDateTime(01 / 01 / 2018));
+            FilterDate.FilterByDate(Convert.ToDateTime("01/01/2020"));
 
             Assert.AreEqual(StockCollection.Count, FilterDate.Count);
         }
@@ -341,33 +341,9 @@ namespace Testing1
         {
             clsStockCollection FilterDate = new clsStockCollection();
 
-            FilterDate.FilterByPrice(1);
+            FilterDate.FilterByDate("01/01/1980");
 
             Assert.AreEqual(0, FilterDate.Count);
-        }
-
-        [TestMethod]
-        public void FilterByDateFound()
-        {
-            clsStockCollection FilterDate = new clsStockCollection();
-
-            Boolean Ok = true;
-
-            FilterDate.FilterByDate(Convert.ToDateTime(10/10/2015));
-
-            if (FilterDate.Count == 1)
-            {
-                if (FilterDate.StockList[0].productId != 61)
-                {
-                    Ok = false;
-                }
-            }
-            else
-            {
-                Ok = false;
-            }
-
-            Assert.IsTrue(Ok);
         }
     }
 }
