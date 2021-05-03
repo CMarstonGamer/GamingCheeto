@@ -7,6 +7,8 @@ namespace ClassLibrary
     {
         //private data member for the list
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
+        //private data member for thisCustomer
+        clsCustomer mThisCustomer = new clsCustomer();
 
         //public property for the customer list
         public List<clsCustomer> CustomerList
@@ -32,11 +34,24 @@ namespace ClassLibrary
             }
             set
             {
-                //
+                //to do later
             }
         }
 
-        public clsCustomer ThisCustomer { get; set; }
+        //public property for ThisCustomer
+        public clsCustomer ThisCustomer
+        {
+            get
+            {
+                //return the private data
+                return mThisCustomer;
+            }
+            set
+            {
+                //set the private data
+                mThisCustomer = value;
+            }
+        }
 
         //constructor
         public clsCustomerCollection()
@@ -76,6 +91,24 @@ namespace ClassLibrary
                 //point at the next record
                 Index++;
             }
+        }
+
+        public int Add()
+        {
+            //adds a new record to the database based on the values of mThisAddress
+            
+            //connect to the database 
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@CustomerName", mThisCustomer.CustomerName);
+            DB.AddParameter("@CustomerEmail", mThisCustomer.CustomerEmail);
+            DB.AddParameter("@CustomerPassword", mThisCustomer.CustomerPassword);
+            DB.AddParameter("@CustomerCardNumber", mThisCustomer.CustomerCardNumber);
+            DB.AddParameter("@CustomerCreationDate", mThisCustomer.CustomerCreationDate);
+            DB.AddParameter("@CustomerAccountStatus", mThisCustomer.CustomerAccountStatus);
+
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblCustomer_Insert");
         }
 
     }
