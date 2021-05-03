@@ -125,5 +125,26 @@ namespace Testing2
 
 
         }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsStaffCollection allStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+            TestItem.firstName = "chris";
+            TestItem.surname = "marston";
+            TestItem.managerOrStaff = true;
+            TestItem.dateOfBirth = DateTime.Now.Date;
+            TestItem.password = "bruh";
+            allStaff.ThisStaff = TestItem;
+            PrimaryKey = allStaff.Add();
+            TestItem.staffId = PrimaryKey;
+
+          
+            allStaff.ThisStaff.Find(PrimaryKey);
+            allStaff.Delete();
+            Boolean Found = allStaff.ThisStaff.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
     }
 }
