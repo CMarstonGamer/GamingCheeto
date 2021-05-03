@@ -8,11 +8,32 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 staffId2;
+    
     protected void Page_Load(object sender, EventArgs e)
     {
+       staffId2 = Convert.ToInt32(Session["staffId"]);
+        if (IsPostBack == false)
+        {
+            if (staffId2 != -1)
+            {
+                DisplayStaff();
+            }
+        }
 
     }
 
+    void DisplayStaff()
+    {
+        clsStaffCollection staffBook = new clsStaffCollection();
+        staffBook.ThisStaff.Find(staffId2);
+        txtStaffId.Text = staffBook.ThisStaff.staffId.ToString();
+        txtfirstName.Text = staffBook.ThisStaff.firstName.ToString();
+        txtsurname.Text = staffBook.ThisStaff.surname.ToString();
+        chkmanagerOrStaff.Checked = staffBook.ThisStaff.managerOrStaff;
+        txtdateOfBirth.Text = staffBook.ThisStaff.dateOfBirth.ToString();
+        txtpassword.Text = staffBook.ThisStaff.password.ToString();
+    }
 
 
 
@@ -42,8 +63,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.password = password;
 
             clsStaffCollection StaffList = new clsStaffCollection();
-            StaffList.ThisStaff = AStaff;
-            StaffList.Add();
+            if (staffId2 == -1)
+            {
+                StaffList.ThisStaff = AStaff;
+                StaffList.Add();
+            }
+            else
+            {
+                StaffList.ThisStaff.Find(staffId2);
+                StaffList.ThisStaff = AStaff;
+                StaffList.Update();
+            }
             
             Response.Redirect("StaffList.aspx");
         }

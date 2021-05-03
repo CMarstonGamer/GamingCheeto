@@ -32,4 +32,19 @@ public partial class _1_List : System.Web.UI.Page
         Session["staffId"] = -1;
         Response.Redirect("StaffDataEntry.aspx");
     }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 staffId;
+        if(lstStaffList.SelectedIndex != -1)
+        {
+            staffId = Convert.ToInt32(lstStaffList.SelectedValue);
+            Session["staffId"] = staffId;
+            Response.Redirect("StaffDataEntry.aspx");
+        }
+        else
+        {
+            Error.Text = "Please slect a record to delete from the list";
+        }
+    }
 }
