@@ -14,34 +14,11 @@ namespace ClassLibrary
 
         public clsStockCollection()
         {           
-            //Int32 Index = 0;
-
-            //Int32 RecordCount = 0;
-
             clsDataConnection DB = new clsDataConnection();
 
             DB.Execute("sproc_tblStock_SelectAll");
 
             PopulateArray(DB);
-            /*
-            RecordCount = DB.Count;
-
-            while (Index < RecordCount)
-            {
-                clsStock Game = new clsStock();
-
-                Game.productId = Convert.ToInt32(DB.DataTable.Rows[Index]["productId"]);
-                Game.GameTitle = Convert.ToString(DB.DataTable.Rows[Index]["GameTitle"]);
-                Game.Price = Convert.ToInt32(DB.DataTable.Rows[Index]["Price(£)"]);
-                Game.Platform = Convert.ToString(DB.DataTable.Rows[Index]["Platform"]);
-                Game.InStock = Convert.ToBoolean(DB.DataTable.Rows[Index]["InStock"]);
-                Game.StockQuantity = Convert.ToInt32(DB.DataTable.Rows[Index]["StockQuantity"]);
-                Game.ReleaseDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["ReleaseDate"]);
-
-                mStockList.Add(Game);
-
-                Index++;
-            }*/
         }
 
 
@@ -167,6 +144,39 @@ namespace ClassLibrary
             DB.AddParameter("@Price", Price);
 
             DB.Execute("sproc_tblStock_SelectPrice");
+
+            PopulateArray(DB);
+        }
+
+        public void FilterByInStock(Boolean InStock)
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@InStock", InStock);
+
+            DB.Execute("sproc_tblStock_SelectInStock");
+
+            PopulateArray(DB);
+        }
+
+        public void FilterByStockQuantity(int StockQuantity)
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@StockQuantity", StockQuantity);
+
+            DB.Execute("sproc_tblStock_SelectStockQuantity");
+
+            PopulateArray(DB);
+        }
+
+        public void FilterByDate(DateTime ReleaseDate)
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@ReleaseDate", ReleaseDate);
+
+            DB.Execute("sproc_tblStock_SelectReleaseDate");
 
             PopulateArray(DB);
         }

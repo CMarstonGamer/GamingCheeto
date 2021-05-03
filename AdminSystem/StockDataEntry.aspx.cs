@@ -22,6 +22,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
+    protected void chkInStock_Click(object sender, EventArgs e)
+    {
+            txtStockQuantity.Enabled = true;
+    }
+
     protected void btnOk_Click(object sender, EventArgs e)
     {
         clsStock Game = new clsStock();

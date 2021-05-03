@@ -88,7 +88,7 @@ public partial class _1_List : System.Web.UI.Page
         lstStockCollection.DataBind();
     }
 
-    protected void btnClear_Ok(Object sender, EventArgs e)
+    protected void btnClear_Click(Object sender, EventArgs e)
     {
         clsStockCollection StockCollection = new clsStockCollection();
 
@@ -130,7 +130,7 @@ public partial class _1_List : System.Web.UI.Page
 
     }
 
-    protected void btnClearPrice_Ok(Object sender, EventArgs e)
+    protected void btnClearPrice_Click(Object sender, EventArgs e)
     {
         clsStockCollection StockCollection = new clsStockCollection();
 
