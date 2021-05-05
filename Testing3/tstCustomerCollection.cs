@@ -14,7 +14,7 @@ namespace Testing3
         {
             //create instance of clsCustomerCollection
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
-            
+
             //test to see if it exists
             Assert.IsNotNull(AllCustomers);
         }
@@ -121,7 +121,7 @@ namespace Testing3
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
 
             //create test data
-            clsCustomer TestItem =  new clsCustomer();
+            clsCustomer TestItem = new clsCustomer();
 
             //var to store primary key
             Int32 PrimaryKey = 0;
@@ -202,5 +202,50 @@ namespace Testing3
             //test to see if ThisCustomer matches the test data
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
+
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create instance of clsCustomerCollection
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+
+            //create test data
+            clsCustomer TestItem = new clsCustomer();
+
+            //var to store primary key
+            Int32 PrimaryKey = 0;
+
+            //set properties of TestCustomer
+            TestItem.CustomerId = 7;
+            TestItem.CustomerName = "Seventh Person";
+            TestItem.CustomerEmail = "sev7@email.com";
+            TestItem.CustomerPassword = "seven777";
+            TestItem.CustomerCardNumber = "3249751097492094";
+            TestItem.CustomerCreationDate = DateTime.Now.Date;
+            TestItem.CustomerAccountStatus = true;
+
+            //set ThisCustomer to the test data
+            AllCustomers.ThisCustomer = TestItem;
+
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+
+            //set the primary key of the test data
+            TestItem.CustomerId = PrimaryKey;
+
+            //find the record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+
+            //delete the record
+            AllCustomers.Delete();
+
+            //now find the record
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+
+            //test to see if the record was not found
+            Assert.IsFalse(Found);
+        }
+
     }
 }
