@@ -341,7 +341,7 @@ namespace Testing1
         {
             clsStockCollection FilterDate = new clsStockCollection();
 
-            FilterDate.FilterByDate("01/01/1980");
+            FilterDate.FilterByDate(Convert.ToDateTime("01/01/1980"));
 
             Assert.AreEqual(0, FilterDate.Count);
         }
