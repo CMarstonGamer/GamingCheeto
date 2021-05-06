@@ -97,12 +97,12 @@ namespace Testing1
 
             Int32 PrimaryKey = 0;
 
-            TestGame.GameTitle = "Crash Bandicoot";
+            TestGame.GameTitle = "Test Add";
             TestGame.Platform = "Playstation 1";
-            TestGame.Price = 10;
+            TestGame.Price = 40;
             TestGame.ReleaseDate = DateTime.Now.Date;
             TestGame.InStock = true;
-            TestGame.StockQuantity = 2;
+            TestGame.StockQuantity = 15;
 
             StockCollection.ThisGame = TestGame;
 
@@ -124,12 +124,12 @@ namespace Testing1
 
             Int32 PrimaryKey = 0;
 
-            TestGame.GameTitle = "Assassins Creed: Black Flag";
-            TestGame.Platform = "Playstation 4";
+            TestGame.GameTitle = "Test Update";
+            TestGame.Platform = "Playstation 2";
             TestGame.Price = 40;
             TestGame.ReleaseDate = DateTime.Now.Date;
             TestGame.InStock = true;
-            TestGame.StockQuantity = 4;
+            TestGame.StockQuantity = 20;
 
             StockCollection.ThisGame = TestGame;
 
@@ -137,12 +137,12 @@ namespace Testing1
 
             TestGame.productId = PrimaryKey;
 
-            TestGame.GameTitle = "Assassins Creed Unity";
-            TestGame.Platform = "Playstation 4";
-            TestGame.Price = 20;
+            TestGame.GameTitle = "Test Update Ok";
+            TestGame.Platform = "Playstation 3";
+            TestGame.Price = 45;
             TestGame.ReleaseDate = DateTime.Now.Date;
             TestGame.InStock = true;
-            TestGame.StockQuantity = 8;
+            TestGame.StockQuantity = 25;
 
             StockCollection.ThisGame = TestGame;
 
@@ -331,7 +331,7 @@ namespace Testing1
 
             clsStockCollection FilterDate = new clsStockCollection();
 
-            FilterDate.FilterByDate(Convert.ToDateTime("01/01/2020"));
+            FilterDate.FilterByDate(Convert.ToDateTime("01/01/2090"));
 
             Assert.AreEqual(StockCollection.Count, FilterDate.Count);
         }
