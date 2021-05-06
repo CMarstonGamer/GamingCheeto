@@ -247,5 +247,71 @@ namespace Testing3
             Assert.IsFalse(Found);
         }
 
+
+        [TestMethod]
+        public void ReportByCustomerNameMethodOK()
+        {
+            //create instance of of the class containing unfiltered results
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+
+            //create an instance of the filtered data
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+
+            //apply a blank string (should return all records)
+            FilteredCustomers.ReportByCustomerName("");
+
+            //test to see if the two values are the same
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+        }
+
+
+        [TestMethod]
+        public void ReportByCustomerNameNoneFound()
+        {
+            //create an instance of the filtered data
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+
+            //apply a customer name that doesn't exist
+            FilteredCustomers.ReportByCustomerName("Unexisting Person");
+
+            //test to see if there are no records
+            Assert.AreEqual(0, FilteredCustomers.Count);
+        }
+
+
+        [TestMethod]
+        public void ReportByCustomerNameTestDataFound()
+        {
+            //create instance of the filtered data
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+
+            //var to store outcome
+            Boolean OK = true;
+
+            //apply a customer name that exists
+            FilteredCustomers.ReportByCustomerName("Alien");
+
+            //check that the correct number of records are found
+            if (FilteredCustomers.Count == 2)
+            {
+                //check that the first record CustomerId is 4
+                if (FilteredCustomers.CustomerList[0].CustomerId != 4)
+                {
+                    OK = false;
+                }
+                //check that the first record CustomerId is 37
+                if (FilteredCustomers.CustomerList[1].CustomerId != 37)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+
+            //test to see if there are no records
+            Assert.IsTrue(OK);
+        }
     }
 }
