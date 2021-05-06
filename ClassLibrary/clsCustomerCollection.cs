@@ -56,41 +56,14 @@ namespace ClassLibrary
         //constructor
         public clsCustomerCollection()
         {
-            //var for index
-            Int32 Index = 0;
-            //var to store the record count
-            Int32 RecordCount = 0;
-
-            //object for data connection
+            //object for the data connection
             clsDataConnection DB = new clsDataConnection();
 
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_SelectAll");
 
-            //get the count of record
-            RecordCount = DB.Count;
-
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank customer
-                clsCustomer ACustomer = new clsCustomer();
-
-                //read in the fields from the current record
-                ACustomer.CustomerId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerId"]);
-                ACustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
-                ACustomer.CustomerEmail = Convert.ToString(DB.DataTable.Rows[Index]["CustomerEmail"]);
-                ACustomer.CustomerPassword = Convert.ToString(DB.DataTable.Rows[Index]["CustomerPassword"]);
-                ACustomer.CustomerCardNumber = Convert.ToString(DB.DataTable.Rows[Index]["CustomerCardNumber"]);
-                ACustomer.CustomerCreationDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["CustomerCreationDate"]);
-                ACustomer.CustomerAccountStatus = Convert.ToBoolean(DB.DataTable.Rows[Index]["CustomerAccountStatus"]);
-
-                //add the record to the private member
-                mCustomerList.Add(ACustomer);
-
-                //point at the next record
-                Index++;
-            }
+            //populate the array list with the data table
+            PopulateArray(DB);            
         }
 
         public int Add()
@@ -142,6 +115,61 @@ namespace ClassLibrary
 
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_Delete");
+        }
+
+        public void ReportByCustomerName(string CustomerName)
+        {
+            //filters the records based on a full or partial customer name
+
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+
+            //send the CustomerName parameter to the database
+            DB.AddParameter("@CustomerName", CustomerName);
+
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByCustomerName");
+
+            //poulate the array list with the data table
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //poulates the array list based on the data table in the parameter DB
+
+            //var for the index
+            Int32 Index = 0;
+            //var to store the record count
+            Int32 RecordCount;
+            
+            //get the count of the records
+            RecordCount = DB.Count;
+
+            //clear the private array list
+            mCustomerList = new List<clsCustomer>();
+
+            //while there are no records to process
+            while (Index < RecordCount)
+            {
+                //create a blank address
+                clsCustomer ACustomer = new clsCustomer();
+
+                //read in the fields from the current record
+                ACustomer.CustomerId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerId"]);
+                ACustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+                ACustomer.CustomerEmail = Convert.ToString(DB.DataTable.Rows[Index]["CustomerEmail"]);
+                ACustomer.CustomerPassword = Convert.ToString(DB.DataTable.Rows[Index]["CustomerPassword"]);
+                ACustomer.CustomerCardNumber = Convert.ToString(DB.DataTable.Rows[Index]["CustomerCardNumber"]);
+                ACustomer.CustomerCreationDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["CustomerCreationDate"]);
+                ACustomer.CustomerAccountStatus = Convert.ToBoolean(DB.DataTable.Rows[Index]["CustomerAccountStatus"]);
+
+                //add the record to the private member
+                mCustomerList.Add(ACustomer);
+
+                //point at the next record
+                Index++;
+            }
         }
     }
 }
