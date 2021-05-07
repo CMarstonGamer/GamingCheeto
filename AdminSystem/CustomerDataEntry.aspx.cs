@@ -58,7 +58,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the customer card number
         string CustomerCardNumber = txtCustomerCardNumber.Text;
         //capture the customer creation date
-        string CustomerCreationDate = txtCustomerCardNumber.Text;
+        string CustomerCreationDate = txtCustomerCreationDate.Text;
         //variable to store any error messages
         string Error = "";
 
@@ -86,7 +86,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             clsCustomerCollection CustomerList = new clsCustomerCollection();
 
             //if this is a new record i.e. CustomerId = -1 then add the data
-            if (CustomerId == -1)
+            if (CustomerId != -1)
             {
                 //set the ThisCustomer property
                 CustomerList.ThisCustomer = ACustomer;
