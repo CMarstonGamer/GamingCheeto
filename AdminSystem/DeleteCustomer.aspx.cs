@@ -32,4 +32,10 @@ public partial class DeleteCustomer : System.Web.UI.Page
         //redirect back to the main page
         Response.Redirect("CustomerList.aspx");
     }
+
+    protected void btnNo_Click(object sender, EventArgs e)
+    {
+        //redirect back to the main page
+        Response.Redirect("CustomerList.aspx");
+    }
 }

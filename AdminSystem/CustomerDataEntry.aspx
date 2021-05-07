@@ -25,7 +25,7 @@
         <asp:Label ID="lblCustomerCreationDate" runat="server" style="z-index: 1; left: 22px; top: 243px; position: absolute" Text="Creation Date"></asp:Label>
         <asp:TextBox ID="txtCustomerCreationDate" runat="server" style="z-index: 1; left: 143px; top: 239px; position: absolute" height="25px" width="168px"></asp:TextBox>
         <asp:CheckBox ID="chkCustomerAccountStatus" runat="server" style="z-index: 1; left: 22px; top: 288px; position: absolute" Text="Account Status" />
-        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 22px; top: 377px; position: absolute; right: 1028px" Text="OK" />
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 22px; top: 377px; position: absolute; right: 1106px" Text="OK" />
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 69px; top: 377px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
     </form>
 </body>

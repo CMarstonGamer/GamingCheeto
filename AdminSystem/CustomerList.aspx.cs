@@ -44,7 +44,7 @@ public partial class _1_List : System.Web.UI.Page
         Session["CustomerId"] = -1;
 
         //redirect to the data entry page
-        Response.Redirect("ACustomer.aspx");
+        Response.Redirect("CustomerDataEntry.aspx");
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ public partial class _1_List : System.Web.UI.Page
             Session["CustomerId"] = CustomerId;
 
             //redirect to the edit page
-            Response.Redirect("ACustomer.aspx");
+            Response.Redirect("CustomerDataEntry.aspx");
         }
         else //if no record has been selected
         {

@@ -10,6 +10,19 @@ namespace ClassLibrary
         //private data member for thisCustomer
         clsCustomer mThisCustomer = new clsCustomer();
 
+        //constructor
+        public clsCustomerCollection()
+        {
+            //object for the data connection
+            clsDataConnection DB = new clsDataConnection();
+
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_SelectAll");
+
+            //populate the array list with the data table
+            PopulateArray(DB);
+        }
+
         //public property for the customer list
         public List<clsCustomer> CustomerList
         {
@@ -53,19 +66,6 @@ namespace ClassLibrary
             }
         }
 
-        //constructor
-        public clsCustomerCollection()
-        {
-            //object for the data connection
-            clsDataConnection DB = new clsDataConnection();
-
-            //execute the stored procedure
-            DB.Execute("sproc_tblCustomer_SelectAll");
-
-            //populate the array list with the data table
-            PopulateArray(DB);            
-        }
-
         public int Add()
         {
             //adds a new record to the database based on the values of mThisAddress
@@ -99,7 +99,7 @@ namespace ClassLibrary
             DB.AddParameter("@CustomerCreationDate", mThisCustomer.CustomerCreationDate);
             DB.AddParameter("@CustomerAccountStatus", mThisCustomer.CustomerAccountStatus);
 
-            //xecute the stored procedure
+            //execute the stored procedure
             DB.Execute("sproc_tblCustomer_Update");
         }
 

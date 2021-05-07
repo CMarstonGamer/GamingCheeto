@@ -4,9 +4,21 @@ namespace ClassLibrary
 {
     public class clsCustomer
     {
-
         //CustomerId private member variable
         private Int32 mCustomerId;
+        //CustomerName private member variable
+        private string mCustomerName;
+        //CustomerEmail private member variable
+        private string mCustomerEmail;
+        //CustomerPassword private member variable
+        private string mCustomerPassword;
+        //CustomerCardNumber private member variable
+        private string mCustomerCardNumber;
+        //CustomerCreationDate private member variable
+        private DateTime mCustomerCreationDate;
+        //CustomerAccountStatus private member variable
+        private Boolean mCustomerAccountStatus;
+
         //CustomerId public property
         public int CustomerId
         {
@@ -20,8 +32,6 @@ namespace ClassLibrary
             }
         }
 
-        //CustomerName private member variable
-        private string mCustomerName;
         //CustomerName public property
         public string CustomerName
         {
@@ -35,8 +45,6 @@ namespace ClassLibrary
             }
         }
 
-        //CustomerEmail private member variable
-        private string mCustomerEmail;
         //CustomerEmail public property
         public string CustomerEmail
         {
@@ -49,9 +57,7 @@ namespace ClassLibrary
                 mCustomerEmail = value;
             }
         }
-
-        //CustomerPassword private member variable
-        private string mCustomerPassword;
+        
         //CustomerPassword public property
         public string CustomerPassword
         {
@@ -64,9 +70,7 @@ namespace ClassLibrary
                 mCustomerPassword = value;
             }
         }
-
-        //CustomerCardNumber private member variable
-        private string mCustomerCardNumber;
+        
         //CustomerCardNumber public property
         public string CustomerCardNumber
         {
@@ -79,9 +83,7 @@ namespace ClassLibrary
                 mCustomerCardNumber = value;
             }
         }
-
-        //CustomerCreationDate private member variable
-        private DateTime mCustomerCreationDate;
+        
         //CustomerCreationDate public property
         public DateTime CustomerCreationDate
         {
@@ -95,8 +97,6 @@ namespace ClassLibrary
             }
         }
 
-        //CustomerAccountStatus private member variable
-        private Boolean mCustomerAccountStatus;
         //CustomerAccountStatus public property
         public bool CustomerAccountStatus
         {
@@ -109,7 +109,6 @@ namespace ClassLibrary
                 mCustomerAccountStatus = value;
             }
         }
-
 
         public bool Find(int customerId)
         {
